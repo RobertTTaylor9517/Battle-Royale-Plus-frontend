@@ -1,12 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Character from '../components/Character'
 
 const Characters = props =>{
 
     const renderChars=()=>{
-        for(let i=0;i <= 4;i++){
-            
-        }
+           return <div>
+                <Character/>
+                <Character/>
+                <Character/>
+                <Character/>
+            </div>
+        
     }
 
     return(
@@ -15,3 +20,5 @@ const Characters = props =>{
         </div>
     )
 }
+
+export default Characters

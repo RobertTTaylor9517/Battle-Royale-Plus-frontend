@@ -3,7 +3,9 @@ function logIn(state, action){
         localStorage.setItem("token", action.token)
         return {
             ...state,
-            user: action.user,
+            user: {
+                ...action.user,
+            teams: action.teams},
             attacks: action.attacks,
             loggedIn: true
         }

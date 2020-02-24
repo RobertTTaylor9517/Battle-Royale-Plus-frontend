@@ -3,12 +3,17 @@ import { connect } from 'react-redux'
 import { getTeam } from '../actions/index'
 
 import Team from '../components/Team'
+import Characters from '../containers/Characters'
 
 const Game = props =>{
 
     const render=()=>{
-        if(props.user.team){
-
+        if(props.team.team_name){
+            return(
+                <div>
+                    <Characters/>
+                </div>
+            )
         }else{
             return(
                 <div>
@@ -35,7 +40,8 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => {
     return {
         loggedIn: state.loggedIn,
-        user: state.user
+        user: state.user,
+        team: state.team
     }
 }
 

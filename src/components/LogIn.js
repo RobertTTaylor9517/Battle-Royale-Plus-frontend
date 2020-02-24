@@ -27,7 +27,7 @@ class LogIn extends Component{
         .then(res=>res.json())
         .then(tkn => {
             console.log(tkn)
-            this.props.logIn(tkn.token, tkn.user, tkn.attacks)
+            this.props.logIn(tkn.token, tkn.user, tkn.attacks, tkn.teams)
             this.props.history.push('/user')
         })
 
@@ -78,8 +78,8 @@ class LogIn extends Component{
 }
 
 const mapDispatchToProps = dispatch => ({
-    logIn: (token, user, attacks)=>{
-        dispatch(logIn(token, user, attacks))
+    logIn: (token, user, attacks, teams)=>{
+        dispatch(logIn(token, user, attacks, teams))
     }
 })
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getTeam } from '../actions/index'
+import { getTeam, addToTeams } from '../actions/index'
 import { newTeam } from '../fetch'
 
 const Team = props =>{
@@ -24,13 +24,13 @@ const Team = props =>{
             if(team.error){
                 console.log(team.error)
             }else{
-                props.getTeam(team)
+                props.addToTeams(team)
             }
         })
     }
 
-    return(
-        <div>
+    const newTeamForm =()=>{
+        return (
             <form onSubmit={createTeam}>
                 <div>
                     <label> Team Name:</label>
@@ -38,6 +38,21 @@ const Team = props =>{
                 </div>
                     <input type='submit' value='Create Team'/>
             </form>
+        )
+    }
+
+    const renderTeams=()=>{
+        if(props.user.teams){
+            return props.user.teams.map(team => {
+                return <h1 onClick={()=>props.getTeam(team)}>{team.team_name}</h1>
+            })
+        }
+    }
+
+    return(
+        <div>
+            {newTeamForm()}
+            {renderTeams()}
         </div>
     )
 
@@ -46,13 +61,17 @@ const Team = props =>{
 const mapDispatchToProps = dispatch => ({
     getTeam: (team)=>{
         dispatch(getTeam(team))
+    },
+    addToTeams: (team)=>{
+        dispatch(addToTeams(team))
     }
 })
 
 const mapStateToProps = state => {
     return {
         loggedIn: state.loggedIn,
-        user: state.user
+        user: state.user,
+        team: state.team
     }
 }
 
