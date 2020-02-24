@@ -1,33 +1,34 @@
 import React from 'react'
-import { userCrud } from '../fetch'
 import { connect } from 'react-redux'
-
 import { getTeam } from '../actions/index'
-import BuildTeam from '../containers/BuildTeam'
 
-const User = props =>{
+import Team from '../components/Team'
+import Characters from './Characters'
 
-    const renderUser=()=>{
-        if(localStorage['token'] !== undefined){
+const BuildTeam = props =>{
+
+    const render=()=>{
+        if(props.team.team_name){
             return(
                 <div>
-                    <h1>{props.user.username}</h1>
-                    <p>{props.user.email}</p>
+                    <Characters/>
                 </div>
             )
         }else{
             return(
-                <h1>Not Logged In</h1>
+                <div>
+                    <Team/>
+                </div>
             )
         }
     }
 
     return(
         <div>
-            {renderUser()}
-            <BuildTeam/>
+            {render()}
         </div>
     )
+
 }
 
 const mapDispatchToProps = dispatch => ({
@@ -39,8 +40,9 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => {
     return {
         loggedIn: state.loggedIn,
-        user: state.user
+        user: state.user,
+        team: state.team
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(User)
+export default connect(mapStateToProps, mapDispatchToProps)(BuildTeam)

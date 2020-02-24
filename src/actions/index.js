@@ -2,6 +2,7 @@ export const LOG_IN = 'LOG_IN'
 export const GET_TEAM = 'GET_TEAM'
 export const ADD_TO_TEAMS = 'ADD_TO_TEAMS'
 export const ADD_CHARACTER = 'ADD_CHARACTER'
+export const START_GAME = 'START_GAME'
 
 export const logIn = (token, user, attacks, teams) =>({
     type: LOG_IN,
@@ -24,4 +25,8 @@ export const addToTeams = (team)=>({
 export const addCharacter = (character)=>({
     type: ADD_CHARACTER,
     character,
+})
+
+export const startGame = ()=>({
+    type: START_GAME
 })
