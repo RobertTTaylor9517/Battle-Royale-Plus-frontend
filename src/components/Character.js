@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { newChar } from '../fetch'
 
+import { addCharacter } from '../actions/index'
+
 class Character extends Component{
     state = {
         name: '',
@@ -29,6 +31,8 @@ class Character extends Component{
     handleSubmit=(e)=>{
         e.preventDefault()
 
+        let attackString = `${this.state.attack1},${this.state.attack2},${this.state.attack3},${this.state.attack4}`
+
         fetch(newChar, {
             method: 'POST',
             headers: {
@@ -39,16 +43,25 @@ class Character extends Component{
             body: JSON.stringify({
                 name: this.state.name,
                 focus: this.state.focus,
-                
+                attacks: attackString,
+                team_id: this.props.team.id
+
             })
         })
+        .then(res=>res.json())
+        .then(char => {
+                this.props.addCharacter(char)
+                this.setState({
+                    disable: true
+                })
+            })
 
     }
 
     render(){
         return(
             <div>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <fieldset disabled={this.state.disable}>
                         <div>
                             <label>Character Name: </label>
@@ -68,24 +81,28 @@ class Character extends Component{
                             <span>
                             <label>Attack 1: </label>
                                 <select name='attack1' onChange={this.handleChange}>
+                                    <option value='none' selected>Select Attack</option>
                                     {this.attackSelect()}
                                 </select>
                             </span>
                             <span>
                                 <label>Attack 2: </label>
                                 <select name='attack2' onChange={this.handleChange}>
+                                    <option value='none' selected>Select Attack</option>
                                     {this.attackSelect()}
                                 </select>
                             </span>
                             <span>
                                 <label>Attack 3: </label>
                                 <select name='attack3' onChange={this.handleChange}>
+                                    <option value='none' selected>Select Attack</option>
                                     {this.attackSelect()}
                                 </select>
                             </span>
                             <span>
                                 <label>Attack 4: </label>
                                 <select name='attack4' onChange={this.handleChange}>
+                                    <option value='none' selected>Select Attack</option>
                                     {this.attackSelect()}
                                 </select>
                             </span>
@@ -102,7 +119,9 @@ class Character extends Component{
 }
 
 const mapDispatchToProps = dispatch => ({
-    
+    addCharacter: (character) =>{
+        dispatch(addCharacter(character))
+    }
 })
 
 const mapStateToProps = state => {
