@@ -3,6 +3,8 @@ function logIn(state, action){
         localStorage.setItem("token", action.token)
         return {
             ...state,
+            user: action.user,
+            attacks: action.attacks,
             loggedIn: true
         }
     }else{

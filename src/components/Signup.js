@@ -1,36 +1,38 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { auth } from '../fetch'
+import { newUser } from '../fetch'
 
 import { logIn } from '../actions/index'
 
-class LogIn extends Component{
+class Signup extends Component{
     state = {
         username: '',
         password: '',
+        email: '',
     }
 
-    handleLogin=(e)=>{
+    handleSignUp=(e)=>{
         e.preventDefault()
 
-        fetch(auth, {
+        fetch(newUser, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json'
             },
             body: JSON.stringify({
-                username: this.state.username,
-                password: this.state.password
+                user: {
+                    username: this.state.username,
+                    password: this.state.password,
+                    email: this.state.email
+                }
             })
         })
         .then(res=>res.json())
-        .then(tkn => {
+        .then(tkn=>{
             console.log(tkn)
-            this.props.logIn(tkn.token, tkn.user, tkn.attacks)
-            this.props.history.push('/user')
+            this.props.logIn(tkn.token)
         })
-
     }
 
     handleChange=(e)=>{
@@ -39,22 +41,15 @@ class LogIn extends Component{
         })
     }
 
-    logInCheck = ()=>{
-        if(this.props.loggedIn === true){
-            return(
-                <div>
-                    <h1>Login Worked</h1>
-                    <h1>Token: {localStorage.token}</h1>
-                </div>
-            )
-        }
-        
-    }
-
     render(){
         return(
             <div>
-                <form onSubmit={this.handleLogin}>
+                <form onSubmit={this.handleSignUp}>
+                    <div>
+                        <label>Email: </label>
+                        <input onChange={this.handleChange}
+                        type='text' name='email' value={this.state.email} placeholder='Enter Email'/>
+                    </div>
                     <div>
                         <label>Username: </label>
                         <input onChange={this.handleChange}
@@ -70,16 +65,14 @@ class LogIn extends Component{
                     <input 
                     type='submit' value='Submit'/>
                 </form>
-                {this.logInCheck()}
-
             </div>
         )
     }
 }
 
 const mapDispatchToProps = dispatch => ({
-    logIn: (token, user, attacks)=>{
-        dispatch(logIn(token, user, attacks))
+    logIn: (token)=>{
+        dispatch(logIn(token))
     }
 })
 
@@ -89,4 +82,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LogIn)
+export default connect(mapStateToProps, mapDispatchToProps)(Signup)
