@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import LogIn from './components/LogIn'
 import Signup from './components/Signup'
 import User from './components/User'
+import Game from './containers/Game'
 
 
 function App() {
@@ -11,10 +12,12 @@ function App() {
       <div>
         <Route exact path='/'
         render={routerProps=><LogIn {...routerProps}/>}/>
-        <Route exact path='/login'
+        <Route exact path='/signup'
         render={routerProps=><Signup {...routerProps}/>}/>
         <Route exact path='/user'
         render={routerProps=><User {...routerProps}/>}/>
+        <Route exact path='/game'
+        render={routerProps => <Game {...routerProps}/>}/>
       </div>
     </Router>
   );

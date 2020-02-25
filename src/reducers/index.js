@@ -1,10 +1,11 @@
 import logIn from './logIn'
-import { LOG_IN, GET_TEAM, ADD_TO_TEAMS, ADD_CHARACTER, START_GAME, SET_DUNGEON } from '../actions'
+import { LOG_IN, GET_TEAM, ADD_TO_TEAMS, ADD_CHARACTER, START_GAME, SET_DUNGEON, SET_FLOOR } from '../actions'
 import getTeam from './getTeam'
 import addToTeams from './addToTeams'
 import addCharacter from './addCharacter'
 import startGame from './startGame'
 import setDungeon from './setDungeon'
+import setFloor from './setFloor'
 
 const initialState = {
     user: {},
@@ -28,6 +29,8 @@ function reducer(state = initialState, action){
             return startGame(state, action)
         case SET_DUNGEON:
             return setDungeon(state,action)
+        case SET_FLOOR:
+            return setFloor(state, action)
         default:
             return state
     }

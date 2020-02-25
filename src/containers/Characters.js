@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Character from '../components/Character'
-import startGame from '../reducers/startGame'
+import {startGame} from '../actions/index'
 import { withRouter } from 'react-router-dom'
 
 const Characters = props =>{
@@ -20,7 +20,7 @@ const Characters = props =>{
         console.log(props)
         if(props.team.characters && props.team.characters.length === 4){
             return(
-                <button type="button">Start Game</button>
+                <button onClick={handleStart} type="button">Start Game</button>
             )
         }
     }

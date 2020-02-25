@@ -1,11 +1,33 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { dungeons } from '../fetch'
-import { setDungeon } from '../actions/index'
+import { dungeons, floor } from '../fetch'
+import { setDungeon, setFloor } from '../actions/index'
+import Battle from './Battle'
 
-const Game = props =>{
-    const render=()=>{
-        if(props.startGame === true){
+class Game extends Component{
+
+    componentDidMount(){
+        this.getDungeon()
+    }
+
+    setDifficulty=()=>{
+        if(this.props.floorCount < 3){
+            return 'easy'
+        }else if(this.props.floorCount < 5){
+            return 'normal'
+        }else if(this.props.floorCount === 5){
+            return 'mini-boss'
+        }else if(this.props.floorCount < 7){
+            return 'hard'
+        }else if(this.props.floorCount === 9){
+            return 'harder'
+        }else if(this.props.floorCount === 10){
+            return 'boss'
+        }
+    }
+
+    getDungeon=()=>{
+        if(this.props.startGame === true){
             fetch(dungeons, {
                 method: "GET",
                 headers: {
@@ -16,17 +38,58 @@ const Game = props =>{
             })
             .then(res=>res.json())
             .then(dungeon => {
-                props.setDungeon(dungeon)
+                this.props.setDungeon(dungeon)
+                this.getFloor()
             })
-        }else if(props.startGame === true && props.dungeon.id){
-
         }
     }
+
+    getFloor=()=>{
+        if(this.props.startGame === true && this.props.dungeon.id){
+            let difficulty = this.setDifficulty()
+            
+            fetch(floor,{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    Authorization: localStorage['token']
+                },
+                body: JSON.stringify({
+                    dungeon_id: this.props.dungeon.id,
+                    difficulty: difficulty
+                })
+            })
+            .then(res=>res.json())
+            .then(floor => {
+                this.props.setFloor(floor)
+            })
+        }
+    }
+
+    startBattle=()=>{
+        if(this.props.dungeon.floor){
+            return(
+                <Battle/>
+            )
+        }
+    }
+    render(){
+        return(
+            <div>
+                {this.startBattle()}
+            </div>
+        )
+    }
+
 }
 
 const mapDispatchToProps = dispatch => ({
     setDungeon: (dungeon)=>{
         dispatch(setDungeon(dungeon))
+    },
+    setFloor: (floor)=>{
+        dispatch(setFloor(floor))
     }
     // logIn: (token, user, attacks, teams)=>{
     //     dispatch(logIn(token, user, attacks, teams))
@@ -37,7 +100,8 @@ const mapStateToProps = state => {
     return {
         team: state.team,
         startGame: state.startGame,
-        dungeon: state.dungeon
+        dungeon: state.dungeon,
+        floorCount: state.floorCount
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Game)
