@@ -7,6 +7,7 @@ export const SET_DUNGEON = 'SET_DUNGEON'
 export const SET_FLOOR = 'SET_FLOOR'
 export const UPDATE_ENEMY = 'UPDATE_ENEMY'
 export const UPDATE_TEAM = 'UPDATE_TEAM'
+export const MOUNT_ATTACK = 'MOUNT_ATTACK'
 
 export const logIn = (token, user, attacks, teams) =>({
     type: LOG_IN,
@@ -45,9 +46,15 @@ export const setFloor = (floor)=>({
     floor
 })
 
-export const updateEnemy =(enemy)=>({
+export const mountAttack = (attack)=>({
+    type: MOUNT_ATTACK,
+    attack
+})
+
+export const updateEnemy =(enemy, index)=>({
     type: UPDATE_ENEMY,
-    enemy
+    enemy,
+    index
 })
 
 export const updateTeam = (team)=>({

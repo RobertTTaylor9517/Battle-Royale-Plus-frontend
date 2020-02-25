@@ -5,7 +5,7 @@ import Player from '../components/Player'
 const Players = (props) =>{
     const renderChars=()=>{
         return props.team.characters.map((char,index)=>{
-            return <Player index={index} character={char} attacking={props.attacking}/>
+            return <Player index={index} character={char} attacking={props.attacking} turn={props.turn}/>
         })
     }
 
