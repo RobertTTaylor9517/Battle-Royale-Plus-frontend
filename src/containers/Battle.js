@@ -1,11 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Enemies from './Enemies'
+import Players from './Players'
 
 const Battle = props => {
     return(
         <div>
-            <h1>Battle Page!</h1>
+            <span><Enemies/></span><span><Players/></span>
         </div>
     )
 }
-export default connect()(Battle)
+export default Battle

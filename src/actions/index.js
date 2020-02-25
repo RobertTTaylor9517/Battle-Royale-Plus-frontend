@@ -5,6 +5,8 @@ export const ADD_CHARACTER = 'ADD_CHARACTER'
 export const START_GAME = 'START_GAME'
 export const SET_DUNGEON = 'SET_DUNGEON'
 export const SET_FLOOR = 'SET_FLOOR'
+export const UPDATE_ENEMY = 'UPDATE_ENEMY'
+export const UPDATE_TEAM = 'UPDATE_TEAM'
 
 export const logIn = (token, user, attacks, teams) =>({
     type: LOG_IN,
@@ -41,4 +43,14 @@ export const setDungeon = (dungeon)=>({
 export const setFloor = (floor)=>({
     type: SET_FLOOR,
     floor
+})
+
+export const updateEnemy =(enemy)=>({
+    type: UPDATE_ENEMY,
+    enemy
+})
+
+export const updateTeam = (team)=>({
+    type: UPDATE_TEAM,
+    team
 })
