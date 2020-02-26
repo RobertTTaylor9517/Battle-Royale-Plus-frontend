@@ -2,10 +2,17 @@ import React from 'react'
 // import { userCrud } from '../fetch'
 import { connect } from 'react-redux'
 
-import { getTeam } from '../actions/index'
+import { getTeam, logOut } from '../actions/index'
 import BuildTeam from '../containers/BuildTeam'
 
 const User = props =>{
+
+    const handleLogOut=()=>{
+        props.logOut()
+        props.history.push({
+            pathname: '/'
+        })
+    }
 
     const renderUser=()=>{
         if(localStorage['token'] !== undefined){
@@ -26,6 +33,7 @@ const User = props =>{
         <div>
             {renderUser()}
             <BuildTeam/>
+            <button onClick={handleLogOut} type='button'>Logout</button>
         </div>
     )
 }
@@ -33,6 +41,9 @@ const User = props =>{
 const mapDispatchToProps = dispatch => ({
     getTeam: (team)=>{
         dispatch(getTeam(team))
+    },
+    logOut: ()=>{
+        dispatch(logOut())
     }
 })
 

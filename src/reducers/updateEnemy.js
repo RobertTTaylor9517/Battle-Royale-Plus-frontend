@@ -13,7 +13,8 @@ function updateEnemy(state, action){
                     }
                 },
                 attacking: 0,
-                turn: 'enemy'
+                turn: 'enemy',
+                mntAttack: {}
             }
         }else{
             return{
@@ -25,7 +26,8 @@ function updateEnemy(state, action){
                         enemies: temp
                     }
                 },
-                attacking: state.attacking + 1
+                attacking: state.attacking + 1,
+                mntAttack: {}
             }
         }
         
@@ -42,7 +44,8 @@ function updateEnemy(state, action){
                 }
             },
             attacking: 0,
-            turn: 'enemy'
+            turn: 'enemy',
+            mntAttack: {}
         }
     }else{
         let temp = [...state.dungeon.floor.enemies]
@@ -56,7 +59,8 @@ function updateEnemy(state, action){
                     enemies: temp
                 }
             },
-            attacking: state.attacking + 1
+            attacking: state.attacking + 1,
+            mntAttack: {}
         }
     }
 

@@ -5,7 +5,7 @@ import { updateEnemy, updateTeam } from '../actions/index'
 
 const Enemy = props => {
     const renderTarget=()=>{
-        if(props.mntAttack && props.mntAttack.name !== 'heal'){
+        if(props.mntAttack && props.mntAttack.name !== 'Heal'){
             return(
                 <h4 onClick={()=>processAttack(props.enemy, props.feID)}>{props.enemy.name}{props.enemy.health}</h4>
             )

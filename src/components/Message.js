@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 
 const Message = props =>  {
     const renderMessage=()=>{
-        if(props.turn === 'player'){
+        if(props.turn === 'player' && props.mntAttack){
             return(
-                <h4>{props.characters[props.attacking].name} uses {props.mntAttack}</h4>
+                <h4>{props.characters[props.attacking].name} uses {props.mntAttack.name}</h4>
             )
         }else if(props.turn === 'enemy'){
             return <h4>{props.floor.enemies[props.attacking].name} attacks!</h4>
@@ -13,7 +13,7 @@ const Message = props =>  {
     }
 
     return(
-        <div>
+        <div align='center'>
             {renderMessage()}
         </div>
     )

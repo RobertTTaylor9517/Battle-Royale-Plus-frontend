@@ -3,10 +3,18 @@ import { connect } from 'react-redux'
 import Enemies from './Enemies'
 import Players from './Players'
 import Message from '../components/Message'
-import { setFloor } from '../actions/index'
+import { setFloor, logOut } from '../actions/index'
 import { floor } from '../fetch'
+import { withRouter } from 'react-router-dom'
 
 const Battle = props => {
+
+    const handleLogOut=()=>{
+        props.logOut()
+        props.history.push({
+            pathname: '/'
+        })
+    }
 
     const setDifficulty=()=>{
         if(props.floorCount < 3){
@@ -65,7 +73,10 @@ const Battle = props => {
                 )
             }else{
                 return(
-                    <button onClick={getFloor} type='button'>Next Floor</button>
+                    <div>
+                        <button onClick={getFloor} type='button'>Next Floor</button>
+                        <button onClick={handleLogOut} type='button'></button>
+                    </div>
                 )
             }
         }
@@ -81,6 +92,9 @@ const Battle = props => {
 const mapDispatchToProps = dispatch => ({
     setFloor: (floor)=>{
         dispatch(setFloor(floor))
+    },
+    logOut: ()=>{
+        dispatch(logOut())
     }
     // logIn: (token, user, attacks, teams)=>{
     //     dispatch(logIn(token, user, attacks, teams))
@@ -97,4 +111,4 @@ const mapStateToProps = state => {
         startGame: state.startGame
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Battle)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Battle))

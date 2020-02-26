@@ -8,6 +8,7 @@ export const SET_FLOOR = 'SET_FLOOR'
 export const UPDATE_ENEMY = 'UPDATE_ENEMY'
 export const UPDATE_TEAM = 'UPDATE_TEAM'
 export const MOUNT_ATTACK = 'MOUNT_ATTACK'
+export const LOG_OUT ='LOG_OUT'
 
 export const logIn = (token, user, attacks, teams) =>({
     type: LOG_IN,
@@ -15,6 +16,10 @@ export const logIn = (token, user, attacks, teams) =>({
     user,
     attacks,
     teams
+})
+
+export const logOut = () =>({
+    type: LOG_OUT
 })
 
 export const getTeam = (team) =>({

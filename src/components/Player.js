@@ -14,7 +14,7 @@ const Player = props => {
     }
 
     const healRender=()=>{
-        if(props.mntAttack && props.mntAttack.name === 'heal'){
+        if(props.mntAttack && props.mntAttack.name === 'Heal'){
             return <h4 onClick={healer}>{props.character.name}{props.character.health}</h4>
         }else{
             return <h4>{props.character.name}{props.character.health}</h4>
@@ -35,7 +35,7 @@ const Player = props => {
             },
             body: JSON.stringify({
                 character_id: props.character.id,
-                team_id: props.team
+                team_id: props.team.id
             })
         })
         .then(res=>res.json())

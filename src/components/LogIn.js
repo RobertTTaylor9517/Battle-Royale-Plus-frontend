@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { auth } from '../fetch'
 
 import { logIn } from '../actions/index'
+import { Link } from 'react-router-dom'
 
 class LogIn extends Component{
     state = {
@@ -40,14 +41,9 @@ class LogIn extends Component{
     }
 
     logInCheck = ()=>{
-        if(this.props.loggedIn === true){
-            return(
-                <div>
-                    <h1>Login Worked</h1>
-                    <h1>Token: {localStorage.token}</h1>
-                </div>
-            )
-        }
+        return (
+            <p>Don't have an Account? <Link to='/signup'>Signup</Link>!</p>
+        )
         
     }
 
