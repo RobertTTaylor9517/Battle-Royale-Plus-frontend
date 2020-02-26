@@ -10,22 +10,6 @@ class Game extends Component{
         this.getDungeon()
     }
 
-    setDifficulty=()=>{
-        if(this.props.floorCount < 3){
-            return 'easy'
-        }else if(this.props.floorCount < 5){
-            return 'normal'
-        }else if(this.props.floorCount === 5){
-            return 'mini-boss'
-        }else if(this.props.floorCount < 7){
-            return 'hard'
-        }else if(this.props.floorCount === 9){
-            return 'harder'
-        }else if(this.props.floorCount === 10){
-            return 'boss'
-        }
-    }
-
     getDungeon=()=>{
         if(this.props.startGame === true){
             fetch(dungeons, {
@@ -46,7 +30,7 @@ class Game extends Component{
 
     getFloor=()=>{
         if(this.props.startGame === true && this.props.dungeon.id){
-            let difficulty = this.setDifficulty()
+            let difficulty = 'easy'
             
             fetch(floor,{
                 method: 'POST',

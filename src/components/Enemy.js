@@ -17,6 +17,7 @@ const Enemy = props => {
     }
 
     const processAttack=(enemy, floor_enemy)=>{
+        console.log(floor_enemy)
         fetch(attack, {
             method: 'POST',
             headers: {
