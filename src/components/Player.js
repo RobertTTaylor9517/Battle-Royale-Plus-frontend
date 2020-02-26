@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {mountAttack} from '../actions/index'
+import {mountAttack, updateTeam} from '../actions/index'
+import { heal } from '../fetch'
 
 const Player = props => {
 
@@ -12,13 +13,40 @@ const Player = props => {
         }
     }
 
+    const healRender=()=>{
+        if(props.mntAttack && props.mntAttack.name === 'heal'){
+            return <h4 onClick={healer}>{props.character.name}{props.character.health}</h4>
+        }else{
+            return <h4>{props.character.name}{props.character.health}</h4>
+        }
+    }
+
     const startAttack=(attack)=>{
         props.mountAttack(attack)
     }
 
+    const healer=()=>{
+        fetch(heal, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                Authorization: localStorage['token']
+            },
+            body: JSON.stringify({
+                character_id: props.character.id,
+                team_id: props.team
+            })
+        })
+        .then(res=>res.json())
+        .then(team => {
+            props.updateTeam(team)
+        })
+    }
+
     return(
         <div>
-            <h4>{props.character.name}{props.character.health}</h4>
+            <h4>{healRender()}</h4>
             {renderAttacks()}
         </div>
     )
@@ -27,6 +55,16 @@ const Player = props => {
 const mapDispatchToProps=dispatch=>({
     mountAttack: (attack)=>{
         dispatch(mountAttack(attack))
+    },
+    updateTeam: (team)=>{
+        dispatch(updateTeam(team))
     }
 })
-export default connect(null, mapDispatchToProps)(Player)
+const mapStateToProps = state =>{
+    return {
+        turn: state.turn,
+        mntAttack: state.mntAttack,
+        team: state.team
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Player)

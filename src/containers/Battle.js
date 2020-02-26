@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Enemies from './Enemies'
 import Players from './Players'
+import Message from '../components/Message'
 import { setFloor } from '../actions/index'
 import { floor } from '../fetch'
 
@@ -13,7 +14,7 @@ const Battle = props => {
         }else if(props.floorCount < 5){
             return 'normal'
         }else if(props.floorCount === 5){
-            return 'mini-boss'
+            return 'mini_boss'
         }else if(props.floorCount < 7){
             return 'hard'
         }else if(props.floorCount === 9){
@@ -52,13 +53,13 @@ const Battle = props => {
                 return(
                     <div className='grid'>
                         <div>
-                        <Enemies/>
+                            <Enemies/>
                         </div>
                         <div>
-
+                            <Message/>
                         </div>
                         <div>
-                        <Players/>
+                            <Players/>
                         </div>
                     </div>
                 )
@@ -92,6 +93,7 @@ const mapStateToProps = state => {
         startGame: state.startGame,
         dungeon: state.dungeon,
         floorCount: state.floorCount,
+        // eslint-disable-next-line no-dupe-keys
         startGame: state.startGame
     }
 }

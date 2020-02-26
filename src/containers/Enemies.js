@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Enemy from '../components/Enemy'
-import { hit } from '../fetch'
+// import { hit } from '../fetch'
 import { updateTeam } from '../actions/index'
 
 const Enemies = (props) =>{
@@ -13,31 +13,9 @@ const Enemies = (props) =>{
         })
     }
 
-    const initiateAttack=()=>{
-        if(props.turn === 'enemy'){
-            fetch(hit, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json',
-                    Authorization: localStorage['token']
-                },
-                body: JSON.stringify({
-                    floor_id: props.floor.id,
-                    team_id: props.team.id
-                })
-            })
-            .then(res=>res.json())
-            .then(team=> {
-                props.updateTeam(team)
-            })
-        }
-    }
-
     return(
         <div>
             {renderEnemies()}
-            {initiateAttack()}
         </div>
     )
 }

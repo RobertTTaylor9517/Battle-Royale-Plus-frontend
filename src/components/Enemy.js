@@ -1,11 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { attack } from '../fetch'
-import { updateEnemy } from '../actions/index'
+import { attack, hit } from '../fetch'
+import { updateEnemy, updateTeam } from '../actions/index'
 
 const Enemy = props => {
     const renderTarget=()=>{
-        if(props.mntAttack){
+        if(props.mntAttack && props.mntAttack.name !== 'heal'){
             return(
                 <h4 onClick={()=>processAttack(props.enemy, props.feID)}>{props.enemy.name}{props.enemy.health}</h4>
             )
@@ -13,6 +13,29 @@ const Enemy = props => {
             return(
                 <h4>{props.enemy.name}{props.enemy.health}</h4>
             )
+        }
+    }
+
+    const enemyAttack=()=>{
+        if(props.attacking === props.index && props.turn === 'enemy'){
+            console.log(props.enemy.name)
+            fetch(hit, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                Accept: 'application/json',
+                                Authorization: localStorage['token']
+                            },
+                            body: JSON.stringify({
+                                enemy_id: props.enemy.id,
+                                team_id: props.team.id
+                            })
+                        })
+                        .then(res=>res.json())
+                        .then(team=> {
+                            props.updateTeam(team)
+                        })
+            props.updateTeam(props.team)
         }
     }
 
@@ -40,6 +63,7 @@ const Enemy = props => {
     return(
         <div>
             {renderTarget()}
+            {enemyAttack()}
         </div>
     )
 }
@@ -47,12 +71,18 @@ const Enemy = props => {
 const mapDispatchToProps=dispatch=>({
     updateEnemy: (enemy, index)=>{
         dispatch(updateEnemy(enemy, index))
+    },
+    updateTeam: (team)=>{
+        dispatch(updateTeam(team))
     }
 })
 
 const mapStateToProps=state=>{
     return {
-        mntAttack: state.mntAttack
+        mntAttack: state.mntAttack,
+        turn: state.turn,
+        attacking: state.attacking,
+        team: state.team
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Enemy)

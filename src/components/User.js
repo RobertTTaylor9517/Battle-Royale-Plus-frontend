@@ -1,5 +1,5 @@
 import React from 'react'
-import { userCrud } from '../fetch'
+// import { userCrud } from '../fetch'
 import { connect } from 'react-redux'
 
 import { getTeam } from '../actions/index'
