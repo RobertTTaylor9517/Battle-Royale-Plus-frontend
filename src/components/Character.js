@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { newChar } from '../fetch'
+import PlayerSprite from '../components/PlayerSprite'
 
 import { addCharacter } from '../actions/index'
 
@@ -61,6 +62,7 @@ class Character extends Component{
     render(){
         return(
             <div>
+                <div>
                 <form onSubmit={this.handleSubmit}>
                     <fieldset disabled={this.state.disable}>
                         <div>
@@ -106,12 +108,15 @@ class Character extends Component{
                                     {this.attackSelect()}
                                 </select>
                             </span>
+                            <span align='right'><PlayerSprite focus={this.state.focus}/></span>
 
                         </div>
                         <input type='submit' value='Submit'/>
                     </fieldset>
                 </form>
+                </div>
             </div>
+            
         )
     }
 
