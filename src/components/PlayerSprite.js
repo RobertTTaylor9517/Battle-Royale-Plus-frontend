@@ -48,18 +48,40 @@ class PlayerSprite extends Component{
         }
     }
 
-    render(){
-        return(
-            <span
+    renderBattleMode=()=>{
+        if(this.props.startGame && this.props.startGame === true){
+            return(
+                <div
             style={{
-                position: 'absolute',
+                position: 'relative',
+                display: 'inline-block',
+                // zIndex: '-1',
                 backgroundImage: `url('${this.switchSprite()}')`,
                 backgroundPosition: `${this.walkArray[this.state.ani]}px ${this.state.yPos}px`,
                 width: '32px',
                 height: '32px'
             }}
             />
-            // <img alt='player' src={sprite}/>
+            )
+        }else{
+            return(
+                <span
+                style={{
+                    position: 'absolute',
+                    // zIndex: '-1',
+                    backgroundImage: `url('${this.switchSprite()}')`,
+                    backgroundPosition: `${this.walkArray[this.state.ani]}px ${this.state.yPos}px`,
+                    width: '32px',
+                    height: '32px'
+                }}
+                />
+            )
+        }
+    }
+
+    render(){
+        return(
+            this.renderBattleMode()
         )
     }
 

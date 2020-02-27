@@ -6,6 +6,7 @@ import Message from '../components/Message'
 import { setFloor, logOut } from '../actions/index'
 import { floor } from '../fetch'
 import { withRouter } from 'react-router-dom'
+import BattleGround from './BattleGround'
 
 const Battle = props => {
 
@@ -65,6 +66,7 @@ const Battle = props => {
                         </div>
                         <div>
                             <Message/>
+                            <BattleGround/>
                         </div>
                         <div>
                             <Players/>
