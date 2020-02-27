@@ -23,7 +23,7 @@ const Battle = props => {
             return 'normal'
         }else if(props.floorCount === 5){
             return 'mini_boss'
-        }else if(props.floorCount < 7){
+        }else if(props.floorCount <= 8 && props.floorCount > 5){
             return 'hard'
         }else if(props.floorCount === 9){
             return 'harder'

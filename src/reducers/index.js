@@ -1,5 +1,5 @@
 import logIn from './logIn'
-import { LOG_IN, GET_TEAM, ADD_TO_TEAMS, ADD_CHARACTER, START_GAME, SET_DUNGEON, SET_FLOOR, MOUNT_ATTACK, UPDATE_ENEMY, UPDATE_TEAM, LOG_OUT } from '../actions'
+import { LOG_IN, GET_TEAM, ADD_TO_TEAMS, ADD_CHARACTER, START_GAME, SET_DUNGEON, SET_FLOOR, MOUNT_ATTACK, UPDATE_ENEMY, UPDATE_TEAM, LOG_OUT, UPDATE_CHAR } from '../actions'
 import getTeam from './getTeam'
 import addToTeams from './addToTeams'
 import addCharacter from './addCharacter'
@@ -8,6 +8,7 @@ import setDungeon from './setDungeon'
 import setFloor from './setFloor'
 import mountAttack from './mountAttack'
 import updateEnemy from './updateEnemy'
+import updateChar from './updateChar'
 import updateTeam from './updateTeam'
 import logOut from './logOut'
 
@@ -39,6 +40,8 @@ function reducer(state = initialState, action){
             return mountAttack(state, action)
         case UPDATE_ENEMY:
             return updateEnemy(state, action)
+        case UPDATE_CHAR:
+            return updateChar(state,action)
         case UPDATE_TEAM:
             return updateTeam(state, action)
         case LOG_OUT:

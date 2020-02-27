@@ -7,6 +7,7 @@ export const SET_DUNGEON = 'SET_DUNGEON'
 export const SET_FLOOR = 'SET_FLOOR'
 export const UPDATE_ENEMY = 'UPDATE_ENEMY'
 export const UPDATE_TEAM = 'UPDATE_TEAM'
+export const UPDATE_CHAR = 'UPDATE_CHAR'
 export const MOUNT_ATTACK = 'MOUNT_ATTACK'
 export const LOG_OUT ='LOG_OUT'
 
@@ -65,4 +66,10 @@ export const updateEnemy =(enemy, index)=>({
 export const updateTeam = (team)=>({
     type: UPDATE_TEAM,
     team
+})
+
+export const updateChar = (char, index) => ({
+    type: UPDATE_CHAR,
+    char,
+    index
 })

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {mountAttack, updateTeam} from '../actions/index'
+import {mountAttack, updateChar} from '../actions/index'
 import { heal } from '../fetch'
 
 const Player = props => {
@@ -39,8 +39,8 @@ const Player = props => {
             })
         })
         .then(res=>res.json())
-        .then(team => {
-            props.updateTeam(team)
+        .then(char => {
+            props.updateChar(char, props.index)
         })
     }
 
@@ -56,9 +56,9 @@ const mapDispatchToProps=dispatch=>({
     mountAttack: (attack)=>{
         dispatch(mountAttack(attack))
     },
-    updateTeam: (team)=>{
-        dispatch(updateTeam(team))
-    }
+    updateChar: (char, index)=>{
+        dispatch(updateChar(char, index))
+    },
 })
 const mapStateToProps = state =>{
     return {
