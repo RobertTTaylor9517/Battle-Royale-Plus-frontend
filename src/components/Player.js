@@ -15,9 +15,9 @@ const Player = props => {
 
     const healRender=()=>{
         if(props.mntAttack && props.mntAttack.name === 'Heal'){
-            return <h4 onClick={healer}>{props.character.name}{props.character.health}</h4>
+            return <h4 onClick={healer}>{props.character.name} {props.character.health}</h4>
         }else{
-            return <h4>{props.character.name}{props.character.health}</h4>
+            return <h4>{props.character.name} {props.character.health}</h4>
         }
     }
 

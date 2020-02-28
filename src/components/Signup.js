@@ -45,7 +45,7 @@ class Signup extends Component{
 
     render(){
         return(
-            <div align='center'>
+            <div align='center' style={{paddingTop: '25%'}}>
                 <form onSubmit={this.handleSignUp}>
                     <div>
                         <label>Email: </label>

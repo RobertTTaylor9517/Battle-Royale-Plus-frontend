@@ -7,11 +7,11 @@ const Enemy = props => {
     const renderTarget=()=>{
         if(props.mntAttack && props.mntAttack.name !== 'Heal'){
             return(
-                <h4 onClick={()=>processAttack(props.enemy, props.feID)}>{props.enemy.name}{props.enemy.health}</h4>
+                <h4 onClick={()=>processAttack(props.enemy, props.feID)}>{props.enemy.name} {props.enemy.health}</h4>
             )
         }else{
             return(
-                <h4>{props.enemy.name}{props.enemy.health}</h4>
+                <h4>{props.enemy.name} {props.enemy.health}</h4>
             )
         }
     }
@@ -32,10 +32,13 @@ const Enemy = props => {
                             })
                         })
                         .then(res=>res.json())
-                        .then(team=> {
-                            props.updateTeam(team)
+                        .then(result=> {
+                            // console.log(team)
+                            // console.log(result.team.json())
+                            let upTeam = JSON.parse(result.team)
+                            props.updateTeam(upTeam, result.message)
                         })
-            props.updateTeam(props.team)
+            // props.updateTeam(props.team)
         }
     }
 
@@ -72,8 +75,8 @@ const mapDispatchToProps=dispatch=>({
     updateEnemy: (enemy, index)=>{
         dispatch(updateEnemy(enemy, index))
     },
-    updateTeam: (team)=>{
-        dispatch(updateTeam(team))
+    updateTeam: (team, message)=>{
+        dispatch(updateTeam(team, message))
     }
 })
 

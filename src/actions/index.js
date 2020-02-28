@@ -63,9 +63,10 @@ export const updateEnemy =(enemy, index)=>({
     index
 })
 
-export const updateTeam = (team)=>({
+export const updateTeam = (team, message)=>({
     type: UPDATE_TEAM,
-    team
+    team,
+    message
 })
 
 export const updateChar = (char, index) => ({

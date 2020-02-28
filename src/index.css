@@ -17,10 +17,12 @@ code {
 
 .grid{
   display: grid;
-  grid-template-columns: 90px auto 90px;
+  grid-template-columns: 25% 50% 25%;
 }
 
 .backColor{
   background-color: black;
+  height: 100vh;
+  width: 100vw;
   color: white;
 }

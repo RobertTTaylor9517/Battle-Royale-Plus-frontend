@@ -3,29 +3,24 @@ import { connect } from 'react-redux'
 
 const Message = props =>  {
     const renderMessage=()=>{
-        if(props.turn === 'player' && props.mntAttack){
-            return(
-                <h4>{props.characters[props.attacking].name} uses {props.mntAttack.name}</h4>
-            )
-        }else if(props.turn === 'enemy'){
-            return <h4>{props.floor.enemies[props.attacking].name} attacks!</h4>
-        }
+        let fiveArr = [...props.message]
+        return fiveArr.slice(-5).map(mess=>{
+            return <li style={{paddingBottom: '15px'}}>{mess}</li>
+        })
     }
 
     return(
         <div align='center'>
-            {renderMessage()}
+            <ul style={{listStyleType: 'none'}}>
+                {renderMessage()}
+            </ul>
         </div>
     )
 }
 
 const mapStateToProps = state =>{
     return {
-        attacking: state.attacking,
-        mntAttack: state.mntAttack,
-        turn: state.turn,
-        floor: state.dungeon.floor,
-        characters: state.team.characters
+        message: state.message
 
     }
 }

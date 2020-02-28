@@ -60,13 +60,18 @@ const Battle = props => {
         if(props.dungeon.floor.enemies){
             if(props.dungeon.floor.enemies.length !== 0){
                 return(
-                    <div className='grid'>
+                    <div className='grid' style={{padding: '15px', paddingTop: '30px'}}>
                         <div>
                             <Enemies/>
                         </div>
                         <div align='center'>
-                            <BattleGround/>
-                            <Message/>
+                            <div style={{height: '25vh'}}>
+                                <BattleGround/>
+                            </div>
+                            <div style={{paddingTop: '100px'}}>
+                                <Message/>
+                            </div>
+                            
                         </div>
                         <div>
                             <Players/>

@@ -9,7 +9,7 @@ const BattleGround = props => {
     const renderPlayers=()=>{
         if(props.team.characters){
             return props.team.characters.map((char,index)=>{
-                return <PlayerSprite focus={char.focus} index={index} startGame={props.startGame}/>
+                return <PlayerSprite attacking={props.attacking} focus={char.focus} index={index} startGame={props.startGame}/>
             })
         }
     }
@@ -25,14 +25,14 @@ const BattleGround = props => {
         style={{
             // display: 'none',
             backgroundImage: `url(${background})`,
-            width: '500px',
-            height: '300px',
+            width: '95%',
+            height: '120%',
             backgroundSize: "100% 100%"
         }}>
-            <div style={{width: '50%', paddingTop: '25%'}}>
+            <div style={{width: '50%', paddingTop: '20%'}}>
                 {renderPlayers()}
             </div>
-            <div style={{width: '50%', paddingTop: '10%'}}>
+            <div style={{width: '50%', paddingTop: '5%'}}>
                 {renderEnemies()}
             </div>
         </div>
@@ -44,7 +44,8 @@ const mapStateToProps = state => {
     return {
         team: state.team,
         startGame: state.startGame,
-        enemies: state.dungeon.floor.enemies
+        enemies: state.dungeon.floor.enemies,
+        attacking: state.attacking
     }
 }
 export default connect(mapStateToProps, null)(BattleGround)

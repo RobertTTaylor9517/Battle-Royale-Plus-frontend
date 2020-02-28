@@ -17,7 +17,8 @@ const initialState = {
     dungeon: {},
     team: {},
     loggedIn: false,
-    startGame: false
+    startGame: false,
+    message: []
 }
 
 function reducer(state = initialState, action){

@@ -7,7 +7,8 @@ function setFloor(state, action){
                 floor: action.floor
             },
             attacking: 0,
-            turn: 'player'
+            turn: 'player',
+            message: []
         }
     
     

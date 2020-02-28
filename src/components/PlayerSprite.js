@@ -49,20 +49,39 @@ class PlayerSprite extends Component{
     }
 
     renderBattleMode=()=>{
+        // console.log(this.props.attacking)
         if(this.props.startGame && this.props.startGame === true){
-            return(
-                <div
-            style={{
-                position: 'relative',
-                display: 'inline-block',
-                // zIndex: '-1',
-                backgroundImage: `url('${this.switchSprite()}')`,
-                backgroundPosition: `${this.walkArray[this.state.ani]}px ${this.state.yPos}px`,
-                width: '32px',
-                height: '32px'
-            }}
-            />
-            )
+            if(this.props.attacking === this.props.index){
+                console.log(`hit ${this.props.focus}`)
+                return(
+                    <div
+                style={{
+                    position: 'relative',
+                    display: 'inline-block',
+                    // zIndex: '-1',
+                    backgroundImage: `url('${this.switchSprite()}')`,
+                    backgroundPosition: `${this.walkArray[this.state.ani]}px ${this.state.yPos}px`,
+                    width: '32px',
+                    height: '32px'
+                }}
+                />
+                )
+            }else{
+                return(
+                    <div
+                style={{
+                    position: 'relative',
+                    display: 'inline-block',
+                    // zIndex: '-1',
+                    backgroundImage: `url('${this.switchSprite()}')`,
+                    backgroundPosition: `32px ${this.state.yPos}px`,
+                    width: '32px',
+                    height: '32px'
+                }}
+                />
+                )
+            }
+            
         }else{
             return(
                 <span
