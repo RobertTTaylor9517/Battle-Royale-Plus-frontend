@@ -49,7 +49,7 @@ class LogIn extends Component{
 
     render(){
         return(
-            <div>
+            <div align='center'>
                 <form onSubmit={this.handleLogin}>
                     <div>
                         <label>Username: </label>

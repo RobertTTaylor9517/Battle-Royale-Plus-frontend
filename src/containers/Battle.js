@@ -64,9 +64,9 @@ const Battle = props => {
                         <div>
                             <Enemies/>
                         </div>
-                        <div>
-                            <Message/>
+                        <div align='center'>
                             <BattleGround/>
+                            <Message/>
                         </div>
                         <div>
                             <Players/>

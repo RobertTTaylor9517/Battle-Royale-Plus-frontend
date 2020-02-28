@@ -9,7 +9,7 @@ import Game from './containers/Game'
 function App() {
   return (
     <Router>
-      <div>
+      <div className='backColor'>
         <Route exact path='/'
         render={routerProps=><LogIn {...routerProps}/>}/>
         <Route exact path='/signup'

@@ -45,7 +45,7 @@ class Signup extends Component{
 
     render(){
         return(
-            <div>
+            <div align='center'>
                 <form onSubmit={this.handleSignUp}>
                     <div>
                         <label>Email: </label>

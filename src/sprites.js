@@ -12,4 +12,4 @@ import grave from './sprites/Grave.png'
 
 
 export const playerSprites = [fire, ice, earth, water, grave]
-export const enemySprites = [goblin, goblinKnight, goblinMage, merman, darkKnight, darkMage]
+export const enemySprites = [goblin, goblinKnight, goblinMage, merman, darkKnight, darkMage, grave]
