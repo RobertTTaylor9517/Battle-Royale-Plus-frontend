@@ -44,7 +44,7 @@ class PlayerSprite extends Component{
             case 'water':
                 return playerSprites[3]
             default:
-                return playerSprites[0]
+                return playerSprites[4]
         }
     }
 
