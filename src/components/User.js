@@ -17,7 +17,7 @@ const User = props =>{
     const renderUser=()=>{
         if(localStorage['token'] !== undefined){
             return(
-                <div>
+                <div style={{padding: '15px', paddingBlock: '30px'}}>
                     <h1>{props.user.username}</h1>
                     <p>{props.user.email}</p>
                 </div>

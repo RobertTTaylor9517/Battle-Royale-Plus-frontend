@@ -10,13 +10,15 @@ export const UPDATE_TEAM = 'UPDATE_TEAM'
 export const UPDATE_CHAR = 'UPDATE_CHAR'
 export const MOUNT_ATTACK = 'MOUNT_ATTACK'
 export const LOG_OUT ='LOG_OUT'
+export const SAVE_GAME = 'SAVE_GAME'
+export const LOAD_GAME = 'LOAD_GAME'
 
-export const logIn = (token, user, attacks, teams) =>({
+export const logIn = (token, user, attacks, saves) =>({
     type: LOG_IN,
     token,
     user,
     attacks,
-    teams
+    saves
 })
 
 export const logOut = () =>({
@@ -74,3 +76,10 @@ export const updateChar = (char, index) => ({
     char,
     index
 })
+
+export const loadGame = (team, floorCount)=>({
+    type: LOAD_GAME,
+    team,
+    floorCount
+})
+

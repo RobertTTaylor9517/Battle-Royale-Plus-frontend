@@ -1,5 +1,5 @@
 import logIn from './logIn'
-import { LOG_IN, GET_TEAM, ADD_TO_TEAMS, ADD_CHARACTER, START_GAME, SET_DUNGEON, SET_FLOOR, MOUNT_ATTACK, UPDATE_ENEMY, UPDATE_TEAM, LOG_OUT, UPDATE_CHAR } from '../actions'
+import { LOG_IN, GET_TEAM, ADD_TO_TEAMS, ADD_CHARACTER, START_GAME, SET_DUNGEON, SET_FLOOR, MOUNT_ATTACK, UPDATE_ENEMY, UPDATE_TEAM, LOG_OUT, UPDATE_CHAR, LOAD_GAME } from '../actions'
 import getTeam from './getTeam'
 import addToTeams from './addToTeams'
 import addCharacter from './addCharacter'
@@ -11,6 +11,7 @@ import updateEnemy from './updateEnemy'
 import updateChar from './updateChar'
 import updateTeam from './updateTeam'
 import logOut from './logOut'
+import loadGame from './loadGame'
 
 const initialState = {
     user: {},
@@ -47,6 +48,8 @@ function reducer(state = initialState, action){
             return updateTeam(state, action)
         case LOG_OUT:
             return logOut(state, action)
+        case LOAD_GAME:
+            return loadGame(state,action)
         default:
             return state
     }

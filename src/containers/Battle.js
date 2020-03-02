@@ -4,7 +4,7 @@ import Enemies from './Enemies'
 import Players from './Players'
 import Message from '../components/Message'
 import { setFloor, logOut } from '../actions/index'
-import { floor } from '../fetch'
+import { floor, save } from '../fetch'
 import { withRouter } from 'react-router-dom'
 import BattleGround from './BattleGround'
 
@@ -56,6 +56,31 @@ const Battle = props => {
         }
     }
 
+    const handleSaveGame=()=>{
+        fetch(save, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                Authorization: localStorage['token']
+            },
+            body: JSON.stringify({
+                team_id: props.team.id,
+                floor_count: props.floorCount
+            })
+        })
+        .then(res=>res.json())
+        .then(result=> {
+            if(result.error){
+                return (
+                    <p>{result.error}</p>
+                )
+            }else{
+                getFloor()
+            }
+        })
+    }
+
     const renderSwitch=()=>{
         if(props.dungeon.floor.enemies){
             if(props.dungeon.floor.enemies.length !== 0){
@@ -82,7 +107,8 @@ const Battle = props => {
                 return(
                     <div>
                         <button onClick={getFloor} type='button'>Next Floor</button>
-                        <button onClick={handleLogOut} type='button'></button>
+                        <button onClick={handleSaveGame} type='button'>Save & Continue</button>
+                        <button onClick={handleLogOut} type='button'>Logout</button>
                     </div>
                 )
             }

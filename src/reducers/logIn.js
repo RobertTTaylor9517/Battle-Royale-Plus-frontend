@@ -5,7 +5,7 @@ function logIn(state, action){
             ...state,
             user: {
                 ...action.user,
-            teams: action.teams},
+            saves: action.saves},
             attacks: action.attacks,
             loggedIn: true
         }

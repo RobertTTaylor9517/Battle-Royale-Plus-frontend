@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getTeam, addToTeams } from '../actions/index'
-import { newTeam } from '../fetch'
+import { getTeam, addToTeams, loadGame } from '../actions/index'
+import { newTeam, load } from '../fetch'
+import { withRouter } from 'react-router-dom'
 
 const Team = props =>{
 
@@ -29,6 +30,29 @@ const Team = props =>{
         })
     }
 
+    const handleLoadGame=(save)=>{
+        fetch(load, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                Authorization: localStorage['token']
+            },
+            body: JSON.stringify({
+                save_id: save
+            })
+        })
+        .then(res=> res.json())
+        .then(result=> {
+            let parTeam = JSON.parse(result.team)
+            props.loadGame(parTeam, result.floorCount)
+            props.history.push({
+                pathname: 'game'
+            })
+
+        })
+    }
+
     const newTeamForm =()=>{
         return (
             <form onSubmit={createTeam}>
@@ -36,23 +60,37 @@ const Team = props =>{
                     <label> Team Name:</label>
                     <input type='text' name='team_name' placeholder='Enter Team Name...'/>
                 </div>
-                    <input type='submit' value='Create Team'/>
+                    <input type='submit' value='New Game'/>
             </form>
         )
     }
 
-    const renderTeams=()=>{
-        if(props.user.teams){
-            return props.user.teams.map(team => {
-                return <h1 onClick={()=>props.getTeam(team)}>{team.team_name}</h1>
-            })
+    const renderSaves=()=>{
+        if(props.user.saves){
+            if(props.user.saves.length === 0){
+                return <h2>No Game Saves. Start A New Game!</h2>
+            }else{
+                return props.user.saves.map(save => {
+                    // return <h1 onClick={()=>handleLoadGame(save.id)}>Cleared: {save.floor_count} </h1>
+                    return(
+                        <div onClick={()=>handleLoadGame(save.id)}>
+                            <h4>{save.team_name}</h4>
+                            <p>Cleared: {save.floor_count}</p>
+                        </div>
+                    )
+                })
+            }
         }
     }
 
     return(
-        <div>
-            {newTeamForm()}
-            {renderTeams()}
+        <div className='user-grid' style={{padding: '15px', paddingTop: '30px'}}>
+            <div>
+                {newTeamForm()}
+            </div>
+            <div align='center'>
+                {renderSaves()}
+            </div> 
         </div>
     )
 
@@ -64,6 +102,9 @@ const mapDispatchToProps = dispatch => ({
     },
     addToTeams: (team)=>{
         dispatch(addToTeams(team))
+    },
+    loadGame: (team, floorCount)=>{
+        dispatch(loadGame(team, floorCount))
     }
 })
 
@@ -71,8 +112,9 @@ const mapStateToProps = state => {
     return {
         loggedIn: state.loggedIn,
         user: state.user,
-        team: state.team
+        team: state.team,
+        saves: state.saves
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Team)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Team))

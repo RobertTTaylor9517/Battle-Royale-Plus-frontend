@@ -9,9 +9,6 @@ const Characters = props =>{
     const renderChars=()=>{
            return <div>
                 <Character/>
-                <Character/>
-                <Character/>
-                <Character/>
             </div>
         
     }
