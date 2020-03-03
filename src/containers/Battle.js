@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Enemies from './Enemies'
 import Players from './Players'
 import Message from '../components/Message'
-import { setFloor, logOut } from '../actions/index'
+import { setFloor, logOut, reset } from '../actions/index'
 import { floor, save } from '../fetch'
 import { withRouter } from 'react-router-dom'
 import BattleGround from './BattleGround'
@@ -112,6 +112,25 @@ const Battle = props => {
                     </div>
                 )
             }
+        }else if(props.team.characters.length === 0){
+            setTimeout(function(){
+                props.reset()
+            }, 4000)
+            return (
+                <div className='grid'>
+                    <div>
+
+                    </div>
+                    <div>
+                        <h1>Game Over</h1>
+
+                    </div>
+                    <div>
+
+                    </div>
+
+                </div>
+            )
         }
 
     }
@@ -128,6 +147,9 @@ const mapDispatchToProps = dispatch => ({
     },
     logOut: ()=>{
         dispatch(logOut())
+    },
+    reset: ()=>{
+        dispatch(reset())
     }
     // logIn: (token, user, attacks, teams)=>{
     //     dispatch(logIn(token, user, attacks, teams))

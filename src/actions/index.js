@@ -12,6 +12,7 @@ export const MOUNT_ATTACK = 'MOUNT_ATTACK'
 export const LOG_OUT ='LOG_OUT'
 export const SAVE_GAME = 'SAVE_GAME'
 export const LOAD_GAME = 'LOAD_GAME'
+export const RESET = 'RESET'
 
 export const logIn = (token, user, attacks, saves) =>({
     type: LOG_IN,
@@ -77,9 +78,14 @@ export const updateChar = (char, index) => ({
     index
 })
 
-export const loadGame = (team, floorCount)=>({
+export const loadGame = (team, floorCount, dungeon)=>({
     type: LOAD_GAME,
     team,
-    floorCount
+    floorCount,
+    dungeon
+})
+
+export const reset = ()=>({
+    type: RESET
 })
 

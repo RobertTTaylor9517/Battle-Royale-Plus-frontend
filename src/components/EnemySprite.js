@@ -4,6 +4,7 @@ import {enemySprites} from '../sprites'
 class EnemySprite extends Component{
 
     walkArray=[32, 64, 0, 64]
+    walkGolem = [64, 128, 0, 128]
 
     state={
         ani: 0,
@@ -68,7 +69,7 @@ class EnemySprite extends Component{
                 display: 'inline-block',
                 // zIndex: '-1',
                 backgroundImage: `url('${this.switchSprite()}')`,
-                backgroundPosition: `${this.walkArray[this.state.ani]}px ${this.state.yPos}px`,
+                backgroundPosition: `${this.walkGolem[this.state.ani]}px ${this.state.yPos}px`,
                 width: '64px',
                 height: '64px'
             }}

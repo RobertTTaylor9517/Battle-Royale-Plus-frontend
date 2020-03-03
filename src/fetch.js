@@ -13,3 +13,4 @@ export const hit = `${root}/hit/`
 export const heal = `${root}/heal/`
 export const save = `${root}/save/`
 export const load = `${root}/load/`
+export const randomTeam = `${root}/random/`

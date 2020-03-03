@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Character from '../components/Character'
-import {startGame, addCharacter} from '../actions/index'
+import {startGame, addCharacter, getTeam} from '../actions/index'
 import { withRouter } from 'react-router-dom'
-import {newChar} from '../fetch'
+import {newChar, randomTeam} from '../fetch'
 
 class Characters extends Component{
 
@@ -26,6 +26,7 @@ class Characters extends Component{
 
     renderChars=()=>{
            return <div>
+               <button onClick={this.getRandomTeam} type='button'>Random Team</button>
                 <Character focus={this.state.characters.character1.focus} handleCharChange={this.handleCharacter1Change}/>
                 <Character focus={this.state.characters.character2.focus}  handleCharChange={this.handleCharacter2Change}/>
                 <Character focus={this.state.characters.character3.focus}  handleCharChange={this.handleCharacter3Change}/>
@@ -133,6 +134,27 @@ class Characters extends Component{
         })
     }
 
+    getRandomTeam=()=>{
+        fetch(randomTeam, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                Authorization: localStorage['token']
+            },
+            body: JSON.stringify({
+                team_id: this.props.team.id
+            })
+        })
+        .then(res=>res.json())
+        .then(team => {
+            this.props.getTeam(team)
+            this.props.history.push({
+                pathname: '/game'
+            })
+        })
+    }
+
     render(){
         return(
             <div>
@@ -151,6 +173,9 @@ const mapDispatchToProps = dispatch => ({
     },
     addCharacter: (character)=>{
         dispatch(addCharacter(character))
+    },
+    getTeam: (team)=>{
+        dispatch(getTeam(team))
     }
 
 })

@@ -1,8 +1,7 @@
 function setDungeon(state,action){
     return{
         ...state,
-        dungeon: action.dungeon,
-        floorCount: 0
+        dungeon: action.dungeon
     }
 }
 export default setDungeon

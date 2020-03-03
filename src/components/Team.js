@@ -46,7 +46,8 @@ const Team = props =>{
         .then(result=> {
             console.log(result)
             let parTeam = JSON.parse(result.team)
-            props.loadGame(parTeam, result.floor_count)
+            // let parDungeon = JSON.parse(result.dungeon)
+            props.loadGame(parTeam, result.floor_count, result.dungeon)
             props.history.push({
                 pathname: 'game'
             })
@@ -104,8 +105,8 @@ const mapDispatchToProps = dispatch => ({
     addToTeams: (team)=>{
         dispatch(addToTeams(team))
     },
-    loadGame: (team, floorCount)=>{
-        dispatch(loadGame(team, floorCount))
+    loadGame: (team, floorCount, dungeon)=>{
+        dispatch(loadGame(team, floorCount, dungeon))
     }
 })
 
