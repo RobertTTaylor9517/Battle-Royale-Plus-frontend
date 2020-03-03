@@ -7,7 +7,9 @@ class EnemySprite extends Component{
 
     state={
         ani: 0,
-        yPos: 32
+        yPos: 32,
+        width: 32,
+        height: 32
     }
 
     componentDidMount(){
@@ -47,26 +49,46 @@ class EnemySprite extends Component{
                 return enemySprites[4]
             case 'Dark Mage':
                 return enemySprites[5]
-            default:
+            case 'High Knight':
                 return enemySprites[6]
+            case 'Golem':
+                return enemySprites[7]
+            default:
+                return enemySprites[8]
         }
     }
 
     renderBattleMode=()=>{
         if(this.props.startGame && this.props.startGame === true){
-            return(
-                <div
-            style={{
+            if(this.props.enemy === 'Golem'){
+                return(
+                    <div
+                style={{
                 position: 'relative',
                 display: 'inline-block',
                 // zIndex: '-1',
                 backgroundImage: `url('${this.switchSprite()}')`,
                 backgroundPosition: `${this.walkArray[this.state.ani]}px ${this.state.yPos}px`,
-                width: '32px',
-                height: '32px'
+                width: '64px',
+                height: '64px'
             }}
             />
-            )
+                )
+            }else{
+                return(
+                    <div
+                style={{
+                    position: 'relative',
+                    display: 'inline-block',
+                    // zIndex: '-1',
+                    backgroundImage: `url('${this.switchSprite()}')`,
+                    backgroundPosition: `${this.walkArray[this.state.ani]}px ${this.state.yPos}px`,
+                    width: '32px',
+                    height: '32px'
+                }}
+                />
+                )
+            }
         }
     }
 

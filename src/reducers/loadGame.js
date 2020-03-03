@@ -1,8 +1,9 @@
 function loadGame(state,action){
+    console.log(action.floorCount)
     return {
         ...state,
         team: action.team,
-        floorCount: action.floorCount + 1,
+        floorCount: action.floorCount,
         startGame: true
     }
 }

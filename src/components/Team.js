@@ -44,8 +44,9 @@ const Team = props =>{
         })
         .then(res=> res.json())
         .then(result=> {
+            console.log(result)
             let parTeam = JSON.parse(result.team)
-            props.loadGame(parTeam, result.floorCount)
+            props.loadGame(parTeam, result.floor_count)
             props.history.push({
                 pathname: 'game'
             })

@@ -4,7 +4,9 @@ function updateEnemy(state, action){
     if(action.enemy.death){
         let temp = [...state.dungeon.floor.enemies]
         temp.splice(action.index, 1)
-        mess.push(`${state.team.characters[state.attacking].name} uses ${att} on ${action.enemy.name}`)
+        if(state.team.characters[state.attacking]){
+            mess.push(`${state.team.characters[state.attacking].name} uses ${att} on ${action.enemy.name}`)
+        }
         mess.push(`${action.enemy.name} died`)
         if(state.attacking === state.team.characters.length - 1){
             return{

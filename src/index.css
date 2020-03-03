@@ -24,6 +24,10 @@ code {
   display: grid;
   grid-template-columns: 50% 50%;
 }
+.char-create-grid{
+  display: grid;
+  grid-template-columns: 50% 20%;
+}
 
 .backColor{
   background-color: black;

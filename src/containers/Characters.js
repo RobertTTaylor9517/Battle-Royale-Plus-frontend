@@ -1,47 +1,158 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Character from '../components/Character'
-import {startGame} from '../actions/index'
+import {startGame, addCharacter} from '../actions/index'
 import { withRouter } from 'react-router-dom'
+import {newChar} from '../fetch'
 
-const Characters = props =>{
+class Characters extends Component{
 
-    const renderChars=()=>{
+    state = {
+        characters: {
+            character1: {
+                focus: 'fire'
+            },
+            character2: {
+                focus: 'fire'
+            },
+            character3: {
+                focus: 'fire'
+            },
+            character4: {
+                focus: 'fire'
+            },
+        }
+    }
+
+    renderChars=()=>{
            return <div>
-                <Character/>
+                <Character focus={this.state.characters.character1.focus} handleCharChange={this.handleCharacter1Change}/>
+                <Character focus={this.state.characters.character2.focus}  handleCharChange={this.handleCharacter2Change}/>
+                <Character focus={this.state.characters.character3.focus}  handleCharChange={this.handleCharacter3Change}/>
+                <Character focus={this.state.characters.character4.focus}  handleCharChange={this.handleCharacter4Change}/>
             </div>
         
     }
 
-    const renderStart=()=>{
-        console.log(props)
-        if(props.team.characters && props.team.characters.length === 4){
+    handleCharacter1Change=(e)=>{
+        this.setState({
+            characters: {
+                ...this.state.characters,
+                character1: {
+                    ...this.state.characters.character1,
+                    [e.target.name]: e.target.value
+                }
+            }
+        })
+    }
+
+    handleCharacter2Change=(e)=>{
+        this.setState({
+            characters: {
+                ...this.state.characters,
+                character2: {
+                    ...this.state.characters.character2,
+                    [e.target.name]: e.target.value
+                }
+            }
+        })
+    }
+
+    handleCharacter3Change=(e)=>{
+        this.setState({
+            characters: {
+                ...this.state.characters,
+                character3: {
+                    ...this.state.characters.character3,
+                    [e.target.name]: e.target.value
+                }
+            }
+        })
+    }
+
+    handleCharacter4Change=(e)=>{
+        this.setState({
+            characters: {
+                ...this.state.characters,
+                character4: {
+                    ...this.state.characters.character4,
+                    [e.target.name]: e.target.value
+                }
+            }
+        })
+    }
+
+
+
+    renderStart=()=>{
+        // console.log(props)
+        if(this.props.team.characters && this.props.team.characters.length === 4){
             return(
-                <button onClick={handleStart} type="button">Start Game</button>
+                <button onClick={this.handleStart} type="button">Start Game</button>
             )
+        }else{
+            return <button onClick={this.handleSubmit} type='button'>Save Team</button>
         }
     }
 
-    const handleStart=()=>{
-        props.startGame()
-        props.history.push({
+    handleStart=()=>{
+        this.props.startGame()
+        this.props.history.push({
             pathname: '/game'
         })
         
     }
 
-    return(
-        <div>
-            {renderChars()}
-            {renderStart()}
-        </div>
-    )
+    handleSubmit=()=>{
+
+        var characters = [this.state.characters.character1, this.state.characters.character2, this.state.characters.character3, this.state.characters.character4]
+
+        characters.map(char=> {
+            console.log(char)
+            let attackString = `${char.attack1},${char.attack2},${char.attack3},${char.attack4}`
+
+            fetch(newChar, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    Authorization: localStorage['token']
+                },
+                body: JSON.stringify({
+                    name: char.name,
+                    focus: char.focus,
+                    attacks: attackString,
+                    team_id: this.props.team.id
+
+                })
+            })
+            .then(res=>res.json())
+            .then(char => {
+                    this.props.addCharacter(char)
+            })
+        })
+    }
+
+    render(){
+        return(
+            <div>
+                {this.renderChars()}
+                {this.renderStart()}
+            </div>
+        )
+    }
+
+    
 }
 
 const mapDispatchToProps = dispatch => ({
     startGame: ()=>{
         dispatch(startGame())
+    },
+    addCharacter: (character)=>{
+        dispatch(addCharacter(character))
     }
+
 })
 
 const mapStateToProps = state => {

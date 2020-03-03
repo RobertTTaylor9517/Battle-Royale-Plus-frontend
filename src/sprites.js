@@ -9,7 +9,9 @@ import goblinKnight from './sprites/Enemy/Goblin_Knight.png'
 import darkMage from './sprites/Enemy/Dark_Mage.png'
 import darkKnight from './sprites/Enemy/Dark_Knight.png'
 import grave from './sprites/Grave.png'
+import golem from './sprites/Enemy/golem-walk.png'
+import highKnight from './sprites/Enemy/High_Knight.png'
 
 
 export const playerSprites = [fire, ice, earth, water, grave]
-export const enemySprites = [goblin, goblinKnight, goblinMage, merman, darkKnight, darkMage, grave]
+export const enemySprites = [goblin, goblinKnight, goblinMage, merman, darkKnight, darkMage, highKnight, golem, grave]
