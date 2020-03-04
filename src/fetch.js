@@ -1,4 +1,4 @@
-const root = 'http://localhost:3000'
+const root = 'https://whispering-depths-96388.herokuapp.com/'
 export const auth = `${root}/authenticate`
 export const newUser = `${root}/users/new`
 export const newTeam = `${root}/teams/new`
