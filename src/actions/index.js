@@ -12,6 +12,7 @@ export const MOUNT_ATTACK = 'MOUNT_ATTACK'
 export const LOG_OUT ='LOG_OUT'
 export const SAVE_GAME = 'SAVE_GAME'
 export const LOAD_GAME = 'LOAD_GAME'
+export const REMOVE_SAVE = 'REMOVE_SAVE'
 export const RESET = 'RESET'
 
 export const logIn = (token, user, attacks, saves) =>({
@@ -87,5 +88,10 @@ export const loadGame = (team, floorCount, dungeon)=>({
 
 export const reset = ()=>({
     type: RESET
+})
+
+export const removeSave=(save_id)=>({
+    type: REMOVE_SAVE,
+    save_id,
 })
 

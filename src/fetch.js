@@ -14,3 +14,4 @@ export const heal = `${root}/heal/`
 export const save = `${root}/save/`
 export const load = `${root}/load/`
 export const randomTeam = `${root}/random/`
+export const delSave= `${root}/save_delete/`

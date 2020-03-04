@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getTeam, addToTeams, loadGame } from '../actions/index'
-import { newTeam, load } from '../fetch'
+import { getTeam, addToTeams, loadGame, removeSave } from '../actions/index'
+import { newTeam, load, delSave } from '../fetch'
 import { withRouter } from 'react-router-dom'
+import Save from './Save'
 
 const Team = props =>{
 
@@ -55,6 +56,28 @@ const Team = props =>{
         })
     }
 
+    const handleDeleteSave=(save)=>{
+        fetch(delSave, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                Authorization: localStorage['token']
+            },
+            body: JSON.stringify({
+                save_id: save
+            })
+        })
+        .then(res=>res.json())
+        .then(result=>{
+            if(result.success){
+                props.removeSave(save)
+            }else{
+                console.log(result.error)
+            }
+        })
+    }
+
     const newTeamForm =()=>{
         return (
             <form onSubmit={createTeam}>
@@ -75,10 +98,7 @@ const Team = props =>{
                 return props.user.saves.map(save => {
                     // return <h1 onClick={()=>handleLoadGame(save.id)}>Cleared: {save.floor_count} </h1>
                     return(
-                        <div onClick={()=>handleLoadGame(save.id)}>
-                            <h4>{save.team_name}</h4>
-                            <p>Cleared: {save.floor_count}</p>
-                        </div>
+                        <Save save={save} handleDeleteSave={handleDeleteSave} handleLoadGame={handleLoadGame}/>
                     )
                 })
             }
@@ -91,6 +111,7 @@ const Team = props =>{
                 {newTeamForm()}
             </div>
             <div align='center'>
+                <h2>Saves: </h2>
                 {renderSaves()}
             </div> 
         </div>
@@ -107,6 +128,9 @@ const mapDispatchToProps = dispatch => ({
     },
     loadGame: (team, floorCount, dungeon)=>{
         dispatch(loadGame(team, floorCount, dungeon))
+    },
+    removeSave: (save_id)=>{
+        dispatch(removeSave(save_id))
     }
 })
 

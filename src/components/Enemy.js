@@ -16,7 +16,7 @@ const Enemy = props => {
         }else{
             return(
                 // <h4>{props.enemy.name} {props.enemy.health}</h4>
-                <div style={{border: 'dashed'}} align='center'>
+                <div style={{border: 'dashed', backgroundColor: 'black'}} align='center'>
                     <div><h4>{props.enemy.name}</h4></div>
                     <div>Health: {props.enemy.health}</div>
                 </div>

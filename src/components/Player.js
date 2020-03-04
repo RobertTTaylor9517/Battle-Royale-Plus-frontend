@@ -37,7 +37,7 @@ const Player = props => {
         if(props.attacking === props.index){
             return 'green'
         }else{
-            return ''
+            return 'black'
         }
     }
 
