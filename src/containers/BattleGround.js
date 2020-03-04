@@ -42,19 +42,19 @@ const BattleGround = props => {
             </OnAtMostPhablet>
             <OnAtLeastTablet>
                 <div
-            style={{
-                // display: 'none',
-                backgroundImage: `url(${background})`,
-                width: '95%',
-                height: '300px',
-                backgroundSize: "100% 100%"
-            }}>
-                <div style={{width: '50%', paddingTop: '25%'}}>
-                    {renderPlayers()}
-                </div>
-                <div style={{width: '50%', paddingTop: '5%'}}>
-                    {renderEnemies()}
-                </div>
+                    style={{
+                    // display: 'none',
+                    backgroundImage: `url(${background})`,
+                    width: '95%',
+                    height: '300px',
+                    backgroundSize: "100% 100%"
+                }}>
+                    <div style={{width: '50%', paddingTop: '25%'}}>
+                        {renderPlayers()}
+                    </div>
+                    <div style={{width: '50%', paddingTop: '3%'}}>
+                        {renderEnemies()}
+                    </div>
                 </div>
             </OnAtLeastTablet>
         </div>
