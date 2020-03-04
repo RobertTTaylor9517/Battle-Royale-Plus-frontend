@@ -82,7 +82,30 @@ const Battle = props => {
     }
 
     const renderSwitch=()=>{
-        if(props.dungeon.floor.enemies){
+        if(props.team.characters.length === 0 && props.dungeon.floor.enemies){
+            setTimeout(function(){
+                props.reset()
+                props.history.push({
+                    pathname: '/user'
+                })
+            }, 4000)
+            return (
+                <div className='grid'>
+                    <div>
+
+                    </div>
+                    <div>
+                        <h1>Game Over</h1>
+
+                    </div>
+                    <div>
+
+                    </div>
+
+                </div>
+            )
+        }
+        else if(props.dungeon.floor.enemies){
             if(props.dungeon.floor.enemies.length !== 0){
                 return(
                     <div className='grid' style={{padding: '15px', paddingTop: '30px'}}>
@@ -112,28 +135,10 @@ const Battle = props => {
                     </div>
                 )
             }
-        }else if(props.team.characters.length === 0){
-            setTimeout(function(){
-                props.reset()
-            }, 4000)
-            return (
-                <div className='grid'>
-                    <div>
-
-                    </div>
-                    <div>
-                        <h1>Game Over</h1>
-
-                    </div>
-                    <div>
-
-                    </div>
-
-                </div>
-            )
         }
 
     }
+
     return(
         <div>
             {renderSwitch()}

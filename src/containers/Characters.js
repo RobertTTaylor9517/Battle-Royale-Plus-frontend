@@ -149,9 +149,7 @@ class Characters extends Component{
         .then(res=>res.json())
         .then(team => {
             this.props.getTeam(team)
-            this.props.history.push({
-                pathname: '/game'
-            })
+            this.handleStart()
         })
     }
 

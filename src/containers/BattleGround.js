@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PlayerSprite from '../components/PlayerSprite'
 import EnemySprite from '../components/EnemySprite'
 import background from '../sprites/Dungeon_Background.jpg'
+import { OnAtMostPhablet, OnAtLeastTablet } from '../Responsive'
 
 const BattleGround = props => {
 
@@ -21,20 +22,27 @@ const BattleGround = props => {
     }
 
     return(
-        <div
-        style={{
-            // display: 'none',
-            backgroundImage: `url(${background})`,
-            width: '95%',
-            height: '120%',
-            backgroundSize: "100% 100%"
-        }}>
-            <div style={{width: '50%', paddingTop: '20%'}}>
-                {renderPlayers()}
-            </div>
-            <div style={{width: '50%', paddingTop: '5%'}}>
-                {renderEnemies()}
-            </div>
+        <div>
+            <OnAtMostPhablet>
+
+            </OnAtMostPhablet>
+            <OnAtLeastTablet>
+                <div
+            style={{
+                // display: 'none',
+                backgroundImage: `url(${background})`,
+                width: '95%',
+                height: '120%',
+                backgroundSize: "100% 100%"
+            }}>
+                <div style={{width: '50%', paddingTop: '20%'}}>
+                    {renderPlayers()}
+                </div>
+                <div style={{width: '50%', paddingTop: '5%'}}>
+                    {renderEnemies()}
+                </div>
+                </div>
+            </OnAtLeastTablet>
         </div>
     )
 

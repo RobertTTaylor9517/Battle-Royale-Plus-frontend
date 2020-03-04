@@ -1,5 +1,5 @@
 function loadGame(state,action){
-    console.log(action.floorCount)
+    console.log(action.team)
     return {
         ...state,
         dungeon: action.dungeon,

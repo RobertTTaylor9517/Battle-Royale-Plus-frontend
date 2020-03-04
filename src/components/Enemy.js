@@ -17,7 +17,7 @@ const Enemy = props => {
     }
 
     const enemyAttack=()=>{
-        if(props.attacking === props.index && props.turn === 'enemy'){
+        if(props.attacking === props.index && props.turn === 'enemy' && props.team.characters.length > 0){
             console.log(props.enemy.name)
             fetch(hit, {
                             method: 'POST',
@@ -33,10 +33,17 @@ const Enemy = props => {
                         })
                         .then(res=>res.json())
                         .then(result=> {
-                            // console.log(team)
-                            // console.log(result.team.json())
-                            let upTeam = JSON.parse(result.team)
-                            props.updateTeam(upTeam, result.message)
+                            if(result.team === undefined){
+                                console.log('try again')
+                            }else{
+                                let upMess = JSON.parse(result.message)
+                                let upTeam = JSON.parse(result.team)
+                                props.updateTeam(upTeam, upMess)
+                            }
+                            
+                        })
+                        .catch(err=>{
+                            console.log(err)
                         })
             // props.updateTeam(props.team)
         }
@@ -59,7 +66,14 @@ const Enemy = props => {
         })
         .then(res=>res.json())
         .then(enemy => {
-            props.updateEnemy(enemy, props.index)
+            if(enemy.name === undefined){
+                console.log('try again')
+            }else{
+                props.updateEnemy(enemy, props.index)
+            }
+        })
+        .catch(err => {
+            console.log(err)
         })
     }
 
