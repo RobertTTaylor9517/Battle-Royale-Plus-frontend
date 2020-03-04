@@ -28,8 +28,10 @@ class LogIn extends Component{
         })
         .then(res=>res.json())
         .then(tkn => {
-            console.log(tkn)
-            this.props.logIn(tkn.token, tkn.user, tkn.attacks, tkn.saves)
+            // console.log(tkn)
+            let parUser = JSON.parse(tkn.user)
+            console.log(parUser)
+            this.props.logIn(tkn.token, parUser, tkn.attacks, tkn.saves)
             this.props.history.push('/user')
         })
 
@@ -50,8 +52,9 @@ class LogIn extends Component{
 
     render(){
         return(
-            <div align='center' style={{paddingTop: '25%'}}>
+            <div align='center' style={{paddingTop: '20%'}}>
                 <Animated animationIn='fadeInUp' animationInDelay={1000} animationInDuration={1000} isVisible={true} animateOnMount={true}><h1>Battle Royale Plus</h1></Animated>
+                
                 <form onSubmit={this.handleLogin}>
                     <div>
                         <label>Username: </label>

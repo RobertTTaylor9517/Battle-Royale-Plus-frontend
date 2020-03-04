@@ -7,6 +7,7 @@ import { setFloor, logOut, reset } from '../actions/index'
 import { floor, save } from '../fetch'
 import { withRouter } from 'react-router-dom'
 import BattleGround from './BattleGround'
+import { OnAtMostPhablet, OnAtLeastTablet } from '../Responsive'
 
 const Battle = props => {
 
@@ -108,27 +109,44 @@ const Battle = props => {
         else if(props.dungeon.floor.enemies){
             if(props.dungeon.floor.enemies.length !== 0){
                 return(
-                    <div className='grid' style={{padding: '15px', paddingTop: '30px'}}>
-                        <div>
-                            <Enemies/>
-                        </div>
-                        <div align='center'>
-                            <div style={{height: '25vh'}}>
-                                <BattleGround/>
+                    <div>
+                        <OnAtMostPhablet>
+                            <BattleGround/>
+                            <div className='user-grid'>
+                                <div>
+                                    <Enemies/>
+                                </div>
+                                <div>
+                                    <Players/>
+                                </div>
+
                             </div>
-                            <div style={{paddingTop: '100px'}}>
-                                <Message/>
+
+                        </OnAtMostPhablet>
+                        <OnAtLeastTablet>
+                        <div className='grid' style={{padding: '15px', paddingTop: '30px'}}>
+                            <div>
+                                <Enemies/>
                             </div>
-                            
+                            <div align='center'>
+                                <div style={{height: '25vh'}}>
+                                    <BattleGround/>
+                                </div>
+                                <div style={{paddingTop: '100px'}}>
+                                    <Message/>
+                                </div>
+                                
+                            </div>
+                            <div>
+                                <Players/>
+                            </div>
                         </div>
-                        <div>
-                            <Players/>
-                        </div>
+                        </OnAtLeastTablet>
                     </div>
                 )
             }else{
                 return(
-                    <div align='center' style={{paddingTop: '40%'}}>
+                    <div align='center' style={{paddingTop: '20%'}}>
                         <div>
                             <h1>{props.team.team_name} continues on...</h1>
                         </div>

@@ -34,7 +34,7 @@ const Player = props => {
     }
 
     const activeRender=()=>{
-        if(props.attacking === props.index){
+        if(props.attacking === props.index && props.turn === 'player'){
             return 'green'
         }else{
             return 'black'
