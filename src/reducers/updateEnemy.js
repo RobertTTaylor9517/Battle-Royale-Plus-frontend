@@ -21,7 +21,7 @@ function updateEnemy(state, action){
                 attacking: 0,
                 turn: 'enemy',
                 mntAttack: {},
-                message: [...state.message, mess]
+                message: [...state.message, ...mess]
             }
         }else{
             return{
@@ -35,7 +35,7 @@ function updateEnemy(state, action){
                 },
                 attacking: state.attacking + 1,
                 mntAttack: {},
-                message: [...state.message, mess]
+                message: [...state.message, ...mess]
             }
         }
         
@@ -55,7 +55,7 @@ function updateEnemy(state, action){
             attacking: 0,
             turn: 'enemy',
             mntAttack: {},
-            message: [...state.message, mess]
+            message: [...state.message, ...mess]
         }
     }else{
         let temp = [...state.dungeon.floor.enemies]
@@ -72,7 +72,7 @@ function updateEnemy(state, action){
             },
             attacking: state.attacking + 1,
             mntAttack: {},
-            message: [...state.message, mess]
+            message: [...state.message, ...mess]
         }
     }
 

@@ -4,6 +4,7 @@ import LogIn from './components/LogIn'
 import Signup from './components/Signup'
 import User from './components/User'
 import Game from './containers/Game'
+import HowToPlay from './components/HowToPlay'
 
 
 function App() {
@@ -18,6 +19,9 @@ function App() {
         render={routerProps=><User {...routerProps}/>}/>
         <Route exact path='/game'
         render={routerProps => <Game {...routerProps}/>}/>
+        <div style={{position: 'absolute', bottom: '0', right: '0'}} >
+          <HowToPlay/>
+        </div>
       </div>
     </Router>
   );

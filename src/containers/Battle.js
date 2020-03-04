@@ -128,7 +128,10 @@ const Battle = props => {
                 )
             }else{
                 return(
-                    <div>
+                    <div align='center' style={{paddingTop: '40%'}}>
+                        <div>
+                            <h1>{props.team.team_name} continues on...</h1>
+                        </div>
                         <button onClick={getFloor} type='button'>Next Floor</button>
                         <button onClick={handleSaveGame} type='button'>Save & Continue</button>
                         <button onClick={handleLogOut} type='button'>Logout</button>

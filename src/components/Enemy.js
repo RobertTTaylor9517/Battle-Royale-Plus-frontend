@@ -5,13 +5,21 @@ import { updateEnemy, updateTeam } from '../actions/index'
 
 const Enemy = props => {
     const renderTarget=()=>{
-        if(props.mntAttack && props.mntAttack.name !== 'Heal'){
+        if(props.mntAttack && props.mntAttack.name !== 'Heal' && props.mntAttack.name !== undefined){
             return(
-                <h4 onClick={()=>processAttack(props.enemy, props.feID)}>{props.enemy.name} {props.enemy.health}</h4>
+                // <h4 onClick={()=>processAttack(props.enemy, props.feID)}>{props.enemy.name} {props.enemy.health}</h4>
+                <div onClick={()=>processAttack(props.enemy, props.feID)} style={{border: 'dashed', backgroundColor: 'red'}} align='center'>
+                    <div><h4>{props.enemy.name}</h4></div>
+                    <div>Health: {props.enemy.health}</div>
+                </div>
             )
         }else{
             return(
-                <h4>{props.enemy.name} {props.enemy.health}</h4>
+                // <h4>{props.enemy.name} {props.enemy.health}</h4>
+                <div style={{border: 'dashed'}} align='center'>
+                    <div><h4>{props.enemy.name}</h4></div>
+                    <div>Health: {props.enemy.health}</div>
+                </div>
             )
         }
     }
@@ -36,9 +44,10 @@ const Enemy = props => {
                             if(result.team === undefined){
                                 console.log('try again')
                             }else{
-                                let upMess = JSON.parse(result.message)
-                                let upTeam = JSON.parse(result.team)
-                                props.updateTeam(upTeam, upMess)
+                                setTimeout(function(){
+                                    let upTeam = JSON.parse(result.team)
+                                    props.updateTeam(upTeam, result.message)
+                                }, 1000)
                             }
                             
                         })

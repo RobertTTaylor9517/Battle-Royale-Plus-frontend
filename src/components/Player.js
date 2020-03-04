@@ -15,9 +15,29 @@ const Player = props => {
 
     const healRender=()=>{
         if(props.mntAttack && props.mntAttack.name === 'Heal'){
-            return <h4 onClick={healer}>{props.character.name} {props.character.health}</h4>
+            // return <h4 onClick={healer}>{props.character.name} {props.character.health}</h4>
+            return(
+                <div onClick={healer}>
+                    <h4>{props.character.name}</h4>
+                    <div>Health: {props.character.health}</div>
+                </div>
+            )
         }else{
-            return <h4>{props.character.name} {props.character.health}</h4>
+            // return <h4>{props.character.name} {props.character.health}</h4>
+            return(
+                <div>
+                    <h4>{props.character.name}</h4>
+                    <div>Health: {props.character.health}</div>
+                </div>
+            )
+        }
+    }
+
+    const activeRender=()=>{
+        if(props.attacking === props.index){
+            return 'green'
+        }else{
+            return ''
         }
     }
 
@@ -45,9 +65,11 @@ const Player = props => {
     }
 
     return(
-        <div>
+        <div style={{border: 'dashed', backgroundColor: `${activeRender()}`}} align='center'>
             <h4>{healRender()}</h4>
-            {renderAttacks()}
+            <div>
+                {renderAttacks()}
+            </div>
         </div>
     )
 }
@@ -64,7 +86,8 @@ const mapStateToProps = state =>{
     return {
         turn: state.turn,
         mntAttack: state.mntAttack,
-        team: state.team
+        team: state.team,
+        attacking: state.attacking
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Player)
