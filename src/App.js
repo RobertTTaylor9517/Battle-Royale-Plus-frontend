@@ -6,6 +6,8 @@ import User from './components/User'
 import Game from './containers/Game'
 import HowToPlay from './components/HowToPlay'
 
+import { OnAtMostPhablet, OnAtLeastTablet} from './Responsive'
+
 
 function App() {
   return (
@@ -19,9 +21,16 @@ function App() {
         render={routerProps=><User {...routerProps}/>}/>
         <Route exact path='/game'
         render={routerProps => <Game {...routerProps}/>}/>
-        <div style={{position: 'absolute', bottom: '0', right: '0'}} >
-          <HowToPlay/>
-        </div>
+        <OnAtLeastTablet>
+          <div style={{position: 'absolute', bottom: '0', right: '0'}} >
+            <HowToPlay/>
+          </div>
+        </OnAtLeastTablet>
+        <OnAtMostPhablet>
+          <div style={{position: 'absolute', top: '0', right: '0'}} >
+              <HowToPlay/>
+          </div>
+        </OnAtMostPhablet>
       </div>
     </Router>
   );
