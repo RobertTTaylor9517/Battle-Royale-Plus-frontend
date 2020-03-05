@@ -4,6 +4,7 @@ import { getTeam, addToTeams, loadGame, removeSave } from '../actions/index'
 import { newTeam, load, delSave } from '../fetch'
 import { withRouter } from 'react-router-dom'
 import Save from './Save'
+import { OnAtLeastTablet, OnAtMostPhablet } from '../Responsive'
 
 const Team = props =>{
 
@@ -106,14 +107,29 @@ const Team = props =>{
     }
 
     return(
-        <div className='user-grid' style={{padding: '15px', paddingTop: '30px'}}>
-            <div>
-                {newTeamForm()}
+        <div>
+            <OnAtLeastTablet>
+            <div className='user-grid' style={{padding: '15px', paddingTop: '30px'}}>
+                <div>
+                    {newTeamForm()}
+                </div>
+                <div align='center'>
+                    <h2>Saves: </h2>
+                    {renderSaves()}
+                </div> 
             </div>
-            <div align='center'>
-                <h2>Saves: </h2>
-                {renderSaves()}
-            </div> 
+            </OnAtLeastTablet>
+            <OnAtMostPhablet>
+            <div style={{padding: '15px', paddingTop: '30px'}}>
+                <div align='center'>
+                    {newTeamForm()}
+                </div>
+                <div align='center' style={{paddingTop: '30px'}}>
+                    <h2>Saves: </h2>
+                    {renderSaves()}
+                </div> 
+            </div>
+            </OnAtMostPhablet>
         </div>
     )
 

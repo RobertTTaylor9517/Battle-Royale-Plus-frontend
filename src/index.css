@@ -35,3 +35,9 @@ code {
   width: 100vw;
   color: white;
 }
+
+.char-create-mobile span{
+  /* margin: 30px 30px 30px 30px; */
+  padding-right: 10px;
+  /* padding-top: 30px; */
+}

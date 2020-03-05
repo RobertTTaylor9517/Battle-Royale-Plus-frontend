@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PlayerSprite from '../components/PlayerSprite'
 
 import { addCharacter } from '../actions/index'
+import { OnAtLeastTablet, OnAtMostPhablet } from '../Responsive'
 
 class Character extends Component{
     state = {
@@ -29,65 +30,128 @@ class Character extends Component{
 
     render(){
         return(
-            <div className='char-create-grid'>
-                
-                <div>
-                <form>
-                    <fieldset disabled={this.state.disable}>
+            <div>
+                <OnAtMostPhablet>
+                    <div>
+                        
                         <div>
-                            <label>Character Name: </label>
-                            <input onChange={this.props.handleCharChange}
-                            type='text' placeholder='Enter Name' name='name'/>
-                        </div>
-                        <div>
-                            <label>Focus: </label>
-                            <select name='focus' onChange={this.props.handleCharChange}>
-                                <option value='fire'>Fire</option>
-                                <option value='earth'>Earth</option>
-                                <option value='water'>Water</option>
-                                <option value='ice'>Ice</option>
-                            </select>
-                        </div>
-                        <div>
-                            <span>
-                            <label>Attack 1: </label>
-                                <select name='attack1' onChange={this.props.handleCharChange}>
-                                    <option value='none' selected>Select Attack</option>
-                                    {this.attackSelect()}
-                                </select>
-                            </span>
-                            <span>
-                                <label>Attack 2: </label>
-                                <select name='attack2' onChange={this.props.handleCharChange}>
-                                    <option value='none' selected>Select Attack</option>
-                                    {this.attackSelect()}
-                                </select>
-                            </span>
-                        </div>
-                        <div>
-                            <span>
-                                <label>Attack 3: </label>
-                                <select name='attack3' onChange={this.props.handleCharChange}>
-                                    <option value='none' selected>Select Attack</option>
-                                    {this.attackSelect()}
-                                </select>
-                            </span>
-                            <span>
-                                <label>Attack 4: </label>
-                                <select name='attack4' onChange={this.props.handleCharChange}>
-                                    <option value='none' selected>Select Attack</option>
-                                    {this.attackSelect()}
-                                </select>
-                            </span>
+                            <form>
+                                <fieldset>
+                                    <div>
+                                        <label>Character Name: </label> <PlayerSprite focus={this.props.focus}/>
+                                        <input onChange={this.props.handleCharChange}
+                                        type='text' placeholder='Enter Name' name='name'/>
+                                    </div>
+                                    <div>
+                                        <label>Focus: </label>
+                                        <select name='focus' onChange={this.props.handleCharChange}>
+                                            <option value='fire'>Fire</option>
+                                            <option value='earth'>Earth</option>
+                                            <option value='water'>Water</option>
+                                            <option value='ice'>Ice</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <div>
+                                        <label>Attack 1: </label>
+                                            <select name='attack1' onChange={this.props.handleCharChange}>
+                                                <option value='none' selected>Select Attack</option>
+                                                {this.attackSelect()}
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label>Attack 2: </label>
+                                            <select name='attack2' onChange={this.props.handleCharChange}>
+                                                <option value='none' selected>Select Attack</option>
+                                                {this.attackSelect()}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <label>Attack 3: </label>
+                                            <select name='attack3' onChange={this.props.handleCharChange}>
+                                                <option value='none' selected>Select Attack</option>
+                                                {this.attackSelect()}
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label>Attack 4: </label>
+                                            <select name='attack4' onChange={this.props.handleCharChange}>
+                                                <option value='none' selected>Select Attack</option>
+                                                {this.attackSelect()}
+                                            </select>
+                                        </div>
 
+                                    </div>
+                                </fieldset>
+                            </form>
                         </div>
-                    </fieldset>
-                </form>
-                </div>
-                <div>
-                    <PlayerSprite focus={this.props.focus}/>
-                </div>
+                    </div>
+                </OnAtMostPhablet>
+                <OnAtLeastTablet>
+                    <div className='char-create-grid'>
+                        
+                        <div>
+                        <form>
+                            <fieldset className='char-create-mobile'>
+                                <div>
+                                    <label>Character Name: </label>
+                                    <input onChange={this.props.handleCharChange}
+                                    type='text' placeholder='Enter Name' name='name'/>
+                                </div>
+                                <div>
+                                    <label>Focus: </label>
+                                    <select name='focus' onChange={this.props.handleCharChange}>
+                                        <option value='fire'>Fire</option>
+                                        <option value='earth'>Earth</option>
+                                        <option value='water'>Water</option>
+                                        <option value='ice'>Ice</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <span>
+                                    <label>Attack 1: </label>
+                                        <select name='attack1' onChange={this.props.handleCharChange}>
+                                            <option value='none' selected>Select Attack</option>
+                                            {this.attackSelect()}
+                                        </select>
+                                    </span>
+                                    <span>
+                                        <label>Attack 2: </label>
+                                        <select name='attack2' onChange={this.props.handleCharChange}>
+                                            <option value='none' selected>Select Attack</option>
+                                            {this.attackSelect()}
+                                        </select>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span>
+                                        <label>Attack 3: </label>
+                                        <select name='attack3' onChange={this.props.handleCharChange}>
+                                            <option value='none' selected>Select Attack</option>
+                                            {this.attackSelect()}
+                                        </select>
+                                    </span>
+                                    <span>
+                                        <label>Attack 4: </label>
+                                        <select name='attack4' onChange={this.props.handleCharChange}>
+                                            <option value='none' selected>Select Attack</option>
+                                            {this.attackSelect()}
+                                        </select>
+                                    </span>
+
+                                </div>
+                            </fieldset>
+                        </form>
+                        </div>
+                        <div>
+                            <PlayerSprite focus={this.props.focus}/>
+                        </div>
+                    </div>
+                </OnAtLeastTablet>
             </div>
+            
             
         )
     }

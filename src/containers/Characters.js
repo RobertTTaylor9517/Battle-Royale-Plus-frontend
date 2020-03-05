@@ -4,6 +4,7 @@ import Character from '../components/Character'
 import {startGame, addCharacter, getTeam} from '../actions/index'
 import { withRouter } from 'react-router-dom'
 import {newChar, randomTeam} from '../fetch'
+import { OnAtLeastTablet, OnAtMostPhablet } from '../Responsive'
 
 class Characters extends Component{
 
@@ -156,8 +157,17 @@ class Characters extends Component{
     render(){
         return(
             <div>
-                {this.renderChars()}
-                {this.renderStart()}
+                <OnAtLeastTablet>
+                    {this.renderChars()}
+                    {this.renderStart()}
+                </OnAtLeastTablet>
+                <OnAtMostPhablet>
+                    <div>
+                        {this.renderChars()}
+                        {this.renderStart()}
+                    </div>
+                </OnAtMostPhablet>
+                
             </div>
         )
     }

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import { getTeam, logOut } from '../actions/index'
 import BuildTeam from '../containers/BuildTeam'
+import { OnAtLeastTablet, OnAtMostPhablet } from '../Responsive'
 
 const User = props =>{
 
@@ -17,7 +18,7 @@ const User = props =>{
     const renderUser=()=>{
         if(localStorage['token'] !== undefined){
             return(
-                <div style={{padding: '15px', paddingBlock: '30px'}}>
+                <div>
                     <h1>{props.user.username}</h1>
                     <p>{props.user.email}</p>
                 </div>
@@ -31,9 +32,23 @@ const User = props =>{
 
     return(
         <div>
-            {renderUser()}
-            <BuildTeam/>
-            <button onClick={handleLogOut} type='button'>Logout</button>
+            <OnAtLeastTablet>
+                <div style={{padding: '15px', paddingBlock: '30px'}}>
+                    {renderUser()}
+                </div>
+                <BuildTeam/>
+                <button onClick={handleLogOut} type='button'>Logout</button>
+            </OnAtLeastTablet>
+            <OnAtMostPhablet>
+                <div style={{padding: '15px', paddingBlock: '30px'}} align='center'>
+                    {renderUser()}
+                </div>
+                <BuildTeam/>
+                <div align='center'>
+                    <button onClick={handleLogOut} type='button'>Logout</button>
+                </div>
+            </OnAtMostPhablet>
+            
         </div>
     )
 }

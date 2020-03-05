@@ -112,6 +112,7 @@ const Battle = props => {
                     <div>
                         <OnAtMostPhablet>
                             <BattleGround/>
+                            <Message/>
                             <div className='user-grid'>
                                 <div>
                                     <Enemies/>

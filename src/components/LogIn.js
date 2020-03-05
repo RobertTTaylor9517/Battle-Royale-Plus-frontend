@@ -5,6 +5,7 @@ import { auth } from '../fetch'
 import { logIn } from '../actions/index'
 import { Link } from 'react-router-dom'
 import { Animated } from 'react-animated-css'
+import { OnAtLeastTablet, OnAtMostPhablet } from '../Responsive'
 
 class LogIn extends Component{
     state = {
@@ -52,27 +53,54 @@ class LogIn extends Component{
 
     render(){
         return(
-            <div align='center' style={{paddingTop: '20%'}}>
-                <Animated animationIn='fadeInUp' animationInDelay={1000} animationInDuration={1000} isVisible={true} animateOnMount={true}><h1>Battle Royale Plus</h1></Animated>
-                
-                <form onSubmit={this.handleLogin}>
-                    <div>
-                        <label>Username: </label>
-                        <input onChange={this.handleChange}
-                        type='text' name='username' value={this.state.username} placeholder='Enter Username'/>
-                    </div>
-                    
-                    <div>
-                        <label>Password: </label>
-                        <input onChange={this.handleChange}
-                        type='password' name='password' value={this.state.password} placeholder='Enter Password'/>
-                    </div>
-                    
-                    <input 
-                    type='submit' value='Submit'/>
-                </form>
-                {this.logInCheck()}
 
+            <div>
+                <OnAtMostPhablet>
+                    <div align='center' style={{paddingTop: '50%'}}>
+                        <Animated animationIn='fadeInUp' animationInDelay={1000} animationInDuration={1000} isVisible={true} animateOnMount={true}><h1>Battle Royale Plus</h1></Animated>
+                        
+                        <form onSubmit={this.handleLogin}>
+                            <div>
+                                <label>Username: </label>
+                                <input onChange={this.handleChange}
+                                type='text' name='username' value={this.state.username} placeholder='Enter Username'/>
+                            </div>
+                            
+                            <div>
+                                <label>Password: </label>
+                                <input onChange={this.handleChange}
+                                type='password' name='password' value={this.state.password} placeholder='Enter Password'/>
+                            </div>
+                            
+                            <input 
+                            type='submit' value='Submit'/>
+                        </form>
+                        {this.logInCheck()}
+                    </div>
+                </OnAtMostPhablet>
+                <OnAtLeastTablet>
+                    <div align='center' style={{paddingTop: '20%'}}>
+                        <Animated animationIn='fadeInUp' animationInDelay={1000} animationInDuration={1000} isVisible={true} animateOnMount={true}><h1>Battle Royale Plus</h1></Animated>
+                        
+                        <form onSubmit={this.handleLogin}>
+                            <div>
+                                <label>Username: </label>
+                                <input onChange={this.handleChange}
+                                type='text' name='username' value={this.state.username} placeholder='Enter Username'/>
+                            </div>
+                            
+                            <div>
+                                <label>Password: </label>
+                                <input onChange={this.handleChange}
+                                type='password' name='password' value={this.state.password} placeholder='Enter Password'/>
+                            </div>
+                            
+                            <input 
+                            type='submit' value='Submit'/>
+                        </form>
+                        {this.logInCheck()}
+                    </div>
+                </OnAtLeastTablet>
             </div>
         )
     }
