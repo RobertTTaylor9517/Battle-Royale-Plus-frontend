@@ -50,7 +50,7 @@ class LogIn extends Component{
 
     logInCheck = ()=>{
         return (
-            <p>Don't have an Account? <Link to='/signup'>Signup</Link>!</p>
+            <p>Don't have an Account? <Link to='/signup' style={{color: 'white'}}>Signup</Link>!</p>
         )
         
     }

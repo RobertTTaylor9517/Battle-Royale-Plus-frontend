@@ -69,7 +69,7 @@ class Signup extends Component{
                     <input 
                     type='submit' value='Submit'/>
                 </form>
-                <p>Already have an Account? <Link to='/'>Login</Link>!</p>
+                <p>Already have an Account? <Link to='/' style={{color: 'white'}}>Login</Link>!</p>
             </div>
         )
     }

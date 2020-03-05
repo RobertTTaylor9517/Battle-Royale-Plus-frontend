@@ -4,6 +4,9 @@ import QMark from '../sprites/question_mark.png'
 import {OnAtLeastTablet, OnAtMostPhablet} from '../Responsive'
 
 const customStyles = {
+    overlay: {
+        backgroundColor: 'black'
+    },
     content: {
         top: '50%',
         left: '50%',
@@ -15,6 +18,9 @@ const customStyles = {
 }
 
 const mobileStyles= {
+    overlay: {
+        backgroundColor: 'black'
+    },
     content: {
         top: '30%',
         left: '50%',
