@@ -44,7 +44,7 @@ const HowToPlay = props => {
     return(
         <div>
             <OnAtMostPhablet>
-                <img onClick={openModal} alt='How To Play 'src={QMark} style={{filter: 'invert(100%)', height: '64px'}}/>
+                <img onClick={openModal} alt='How To Play 'src={QMark} style={{filter: 'invert(100%)', height: '32px'}}/>
                 <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}

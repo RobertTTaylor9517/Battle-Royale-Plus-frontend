@@ -32,8 +32,12 @@ class LogIn extends Component{
             console.log(tkn)
             // let parUser = JSON.parse(tkn.user)
             // console.log(parUser)
-            this.props.logIn(tkn.token, tkn.user, tkn.attacks, tkn.saves)
-            this.props.history.push('/user')
+            if(tkn.error){
+                console.log(tkn.error)
+            }else{
+                this.props.logIn(tkn.token, tkn.user, tkn.attacks, tkn.saves)
+                this.props.history.push('/user')
+            }
         })
 
     }

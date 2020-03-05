@@ -61,10 +61,11 @@ export const mountAttack = (attack)=>({
     attack
 })
 
-export const updateEnemy =(enemy, index)=>({
+export const updateEnemy =(enemy, index, message)=>({
     type: UPDATE_ENEMY,
     enemy,
-    index
+    index,
+    message
 })
 
 export const updateTeam = (team, message)=>({

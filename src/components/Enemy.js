@@ -70,15 +70,17 @@ const Enemy = props => {
             body: JSON.stringify({
                 attack: props.mntAttack,
                 enemy: enemy,
-                floor_enemy_id: floor_enemy
+                floor_enemy_id: floor_enemy,
+                character: props.team.characters[props.attacking].name
             })
         })
         .then(res=>res.json())
-        .then(enemy => {
-            if(enemy.name === undefined){
+        .then(result => {
+            console.log(result)
+            if(enemy.name === undefined && enemy.death === undefined){
                 console.log('try again')
             }else{
-                props.updateEnemy(enemy, props.index)
+                props.updateEnemy(result.enemy, props.index, result.message)
             }
         })
         .catch(err => {
@@ -95,8 +97,8 @@ const Enemy = props => {
 }
 
 const mapDispatchToProps=dispatch=>({
-    updateEnemy: (enemy, index)=>{
-        dispatch(updateEnemy(enemy, index))
+    updateEnemy: (enemy, index, message)=>{
+        dispatch(updateEnemy(enemy, index, message))
     },
     updateTeam: (team, message)=>{
         dispatch(updateTeam(team, message))
