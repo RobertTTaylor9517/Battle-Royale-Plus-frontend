@@ -31,11 +31,12 @@ class Signup extends Component{
         })
         .then(res=>res.json())
         .then(tkn=>{
-            console.log(tkn)
-            let parUser = JSON.parse(tkn.user)
-            this.props.logIn(tkn.token, parUser, tkn.attacks, tkn.saves)
+            // console.log(tkn)
+            // let parUser = JSON.parse(tkn.user)
+            this.props.logIn(tkn.token, tkn.user, tkn.attacks, tkn.saves)
             this.props.history.push('/user')
         })
+        .catch(err => console.log(err))
     }
 
     handleChange=(e)=>{
